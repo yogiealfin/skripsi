@@ -5,53 +5,53 @@
 $errors = array();
 $sukses = false;
 
-if(isset($_POST['submit'])):			
+if (isset($_POST['submit'])) :
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$password2 = $_POST['password2'];
 	$nama = $_POST['nama'];
 	$email = $_POST['email'];
 	$role = $_POST['role'];
-	
-	if(!$username) {
+
+	if (!$username) {
 		$errors[] = 'Username tidak boleh kosong';
-	}		
-	
-	if(!$password) {
+	}
+
+	if (!$password) {
 		$errors[] = 'Password tidak boleh kosong';
-	}		
-	
-	if($password != $password2) {
+	}
+
+	if ($password != $password2) {
 		$errors[] = 'Password harus sama keduanya';
-	}		
-	
-	if(!$nama) {
+	}
+
+	if (!$nama) {
 		$errors[] = 'Nama tidak boleh kosong';
-	}		
-	
-	if(!$email) {
+	}
+
+	if (!$email) {
 		$errors[] = 'Email tidak boleh kosong';
 	}
-	
-	if(!$role) {
+
+	if (!$role) {
 		$errors[] = 'Role tidak boleh kosong';
 	}
-	
+
 	// Cek Username
-	if($username) {
-		$query = mysqli_query($koneksi,"SELECT * FROM user WHERE username = '$username'");
+	if ($username) {
+		$query = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'");
 		$cek = mysqli_fetch_array($query);
-		if(!empty($cek)) {
+		if (!empty($cek)) {
 			$errors[] = 'Username sudah digunakan';
 		}
 	}
-	
-	if(empty($errors)):
-		$pass = sha1($password);
-		$simpan = mysqli_query($koneksi,"INSERT INTO user (id_user, username, password, nama, email, role) VALUES ('', '$username', '$pass', '$nama', '$email', '$role')");
-		if($simpan) {
-			redirect_to('list-user.php?status=sukses-baru');		
-		}else{
+
+	if (empty($errors)) :
+		$pass = password_hash($password, PASSWORD_DEFAULT);
+		$simpan = mysqli_query($koneksi, "INSERT INTO user (id_user, username, password, nama, email, role, id_divisi) VALUES (NULL, '$username', '$pass', '$nama', '$email', '$role', 11)");
+		if ($simpan) {
+			redirect_to('list-user.php?status=sukses-baru');
+		} else {
 			$errors[] = 'Data gagal disimpan';
 		}
 	endif;
@@ -65,19 +65,19 @@ require_once('template/header.php');
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users-cog"></i> Data User</h1>
+	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users-cog"></i> Data User</h1>
 
 	<a href="list-user.php" class="btn btn-secondary btn-icon-split"><span class="icon text-white-50"><i class="fas fa-arrow-left"></i></span>
 		<span class="text">Kembali</span>
 	</a>
 </div>
-			
-<?php if(!empty($errors)): ?>
+
+<?php if (!empty($errors)) : ?>
 	<div class="alert alert-info">
-		<?php foreach($errors as $error): ?>
+		<?php foreach ($errors as $error) : ?>
 			<?php echo $error; ?>
 		<?php endforeach; ?>
-	</div>				
+	</div>
 <?php endif; ?>
 
 <form action="tambah-user.php" method="post">
@@ -89,29 +89,29 @@ require_once('template/header.php');
 			<div class="row">
 				<div class="form-group col-md-6">
 					<label class="font-weight-bold">Username</label>
-					<input autocomplete="off" type="text" name="username" required class="form-control"/>
+					<input autocomplete="off" type="text" name="username" required class="form-control" />
 				</div>
-				
+
 				<div class="form-group col-md-6">
 					<label class="font-weight-bold">Password</label>
-					<input autocomplete="off" type="password" name="password" required class="form-control"/>
+					<input autocomplete="off" type="password" name="password" required class="form-control" />
 				</div>
-				
+
 				<div class="form-group col-md-6">
 					<label class="font-weight-bold">Ulangi Password</label>
-					<input autocomplete="off" type="password" name="password2" required class="form-control"/>
+					<input autocomplete="off" type="password" name="password2" required class="form-control" />
 				</div>
-				
+
 				<div class="form-group col-md-6">
 					<label class="font-weight-bold">Nama</label>
-					<input autocomplete="off" type="text" name="nama" required class="form-control"/>
+					<input autocomplete="off" type="text" name="nama" required class="form-control" />
 				</div>
-				
+
 				<div class="form-group col-md-6">
 					<label class="font-weight-bold">E-Mail</label>
-					<input autocomplete="off" type="email" name="email" required class="form-control"/>
+					<input autocomplete="off" type="email" name="email" required class="form-control" />
 				</div>
-				
+
 				<div class="form-group col-md-6">
 					<label class="font-weight-bold">Level</label>
 					<select name="role" required class="form-control">
@@ -123,9 +123,9 @@ require_once('template/header.php');
 			</div>
 		</div>
 		<div class="card-footer text-right">
-            <button name="submit" value="submit" type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
-            <button type="reset" class="btn btn-info"><i class="fa fa-sync-alt"></i> Reset</button>
-        </div>
+			<button name="submit" value="submit" type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>
+			<button type="reset" class="btn btn-info"><i class="fa fa-sync-alt"></i> Reset</button>
+		</div>
 	</div>
 </form>
 <?php

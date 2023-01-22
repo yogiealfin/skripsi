@@ -113,6 +113,14 @@
             <span>Data Hasil Akhir</span></a>
         </li>
 
+        <li class="nav-item <?php if ($page == "User") {
+                              echo "active";
+                            } ?>">
+          <a class="nav-link" href="tambah-user.php">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Tambah User</span></a>
+        </li>
+
         <!-- Divider
       <hr class="sidebar-divider"> -->
 
