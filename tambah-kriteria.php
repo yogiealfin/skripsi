@@ -81,11 +81,11 @@ require_once('template/header.php');
 					<input autocomplete="off" type="text" name="nama" required class="form-control" />
 				</div>
 
-				<div class="form-group col-md-6">
+				<div class="form-group col-md-6" hidden>
 					<label class="font-weight-bold">Type Kriteria</label>
 					<select name="type" class="form-control" required>
 						<option value="">--Pilih--</option>
-						<option value="Benefit">Benefit</option>
+						<option value="Benefit" selected>Benefit</option>
 						<option value="Cost">Cost</option>
 					</select>
 				</div>
@@ -95,12 +95,12 @@ require_once('template/header.php');
 					<input autocomplete="off" type="number" name="bobot" required step="0.01" class="form-control" />
 				</div>
 
-				<div class="form-group col-md-6">
+				<div class="form-group col-md-6" hidden>
 					<label class="font-weight-bold">Cara Penilaian</label>
 					<select name="ada_pilihan" class="form-control" required>
 						<option value="">--Pilih--</option>
 						<option value="0">Input Langsung</option>
-						<option value="1">Pilihan Sub Kriteria</option>
+						<option value="1" selected>Pilihan Sub Kriteria</option>
 					</select>
 				</div>
 			</div>

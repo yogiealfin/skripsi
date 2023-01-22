@@ -65,6 +65,14 @@
         </div>
 
 
+        <li class="nav-item <?php if ($page == "Pelamar") {
+                              echo "active";
+                            } ?>">
+          <a class="nav-link" href="list-pelamar.php">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Data Pelamar</span></a>
+        </li>
+
         <li class="nav-item <?php if ($page == "Kriteria") {
                               echo "active";
                             } ?>">
@@ -79,14 +87,6 @@
           <a class="nav-link" href="list-sub-kriteria.php">
             <i class="fas fa-fw fa-cubes"></i>
             <span>Data Sub Kriteria</span></a>
-        </li>
-
-        <li class="nav-item <?php if ($page == "Alternatif") {
-                              echo "active";
-                            } ?>">
-          <a class="nav-link" href="list-alternatif.php">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Data Pelamar</span></a>
         </li>
 
         <li class="nav-item <?php if ($page == "Penilaian") {
@@ -116,7 +116,7 @@
         <li class="nav-item <?php if ($page == "User") {
                               echo "active";
                             } ?>">
-          <a class="nav-link" href="tambah-user.php">
+          <a class="nav-link" href="list-user.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Tambah User</span></a>
         </li>
