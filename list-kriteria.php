@@ -47,7 +47,6 @@ endif;
 						<th>Nama Kriteria</th>
 						<!-- <th>Type</th> -->
 						<th>Bobot</th>
-						<th>Cara Penilaian</th>
 						<th width="15%">Aksi</th>
 					</tr>
 				</thead>
@@ -63,7 +62,6 @@ endif;
 							<td align="left"><?php echo $data['nama']; ?></td>
 							<!-- <td><?php echo $data['type']; ?></td> -->
 							<td><?php echo $data['bobot']; ?></td>
-							<td><?php echo ($data['ada_pilihan']) ? 'Pilihan Sub Kriteria' : 'Input Langsung'; ?></td>
 							<td>
 								<div class="btn-group" role="group">
 									<a data-toggle="tooltip" data-placement="bottom" title="Edit Data" href="edit-kriteria.php?id=<?php echo $data['id_kriteria']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
