@@ -46,6 +46,7 @@ endif;
 					<tr align="center">
 						<th width="5%">No</th>
 						<th>Nama</th>
+						<th>Lowongan</th>
 						<th width="15%">Aksi</th>
 					</tr>
 				</thead>
@@ -61,8 +62,8 @@ endif;
 							<td align="left"><?php echo $data['nama']; ?></td>
 							<td>
 								<div class="btn-group" role="group">
-									<a data-toggle="tooltip" data-placement="bottom" title="Edit Data" href="edit-alternatif.php?id=<?php echo $data['id_alternatif']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-									<a data-toggle="tooltip" data-placement="bottom" title="Hapus Data" href="hapus-alternatif.php?id=<?php echo $data['id_alternatif']; ?>" onclick="return confirm ('Apakah anda yakin untuk meghapus data ini')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+									<a data-toggle="tooltip" data-placement="bottom" title="Edit Data" href="edit-alternatif.php?id=<?php echo $data['id_pelamar']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+									<a data-toggle="tooltip" data-placement="bottom" title="Hapus Data" href="hapus-alternatif.php?id=<?php echo $data['id_pelamar']; ?>" onclick="return confirm ('Apakah anda yakin untuk meghapus data ini')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
 								</div>
 							</td>
 						</tr>
