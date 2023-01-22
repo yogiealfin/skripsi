@@ -10,7 +10,7 @@ require_once('template/header.php');
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Data Pelamar</h1>
 
-	<a href="tambah-alternatif.php" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah Data </a>
+	<a href="tambah-pelamar.php" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah Data </a>
 </div>
 
 <?php
@@ -53,13 +53,14 @@ endif;
 				<tbody>
 					<?php
 					$no = 0;
-					$query = mysqli_query($koneksi, "SELECT * FROM pelamar");
+					$query = mysqli_query($koneksi, "SELECT * FROM pelamar INNER JOIN lowongan ON pelamar.id_lowongan = lowongan.id_lowongan");
 					while ($data = mysqli_fetch_assoc($query)) :
 						$no++;
 					?>
 						<tr align="center">
 							<td><?php echo $no; ?></td>
-							<td align="left"><?php echo $data['nama']; ?></td>
+							<td align="left"><?php echo $data['nama_pelamar']; ?></td>
+							<td><?= $data['nama_lowongan']; ?></td>
 							<td>
 								<div class="btn-group" role="group">
 									<a data-toggle="tooltip" data-placement="bottom" title="Edit Data" href="edit-alternatif.php?id=<?php echo $data['id_pelamar']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>

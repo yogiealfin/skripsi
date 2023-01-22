@@ -6,6 +6,10 @@ $errors = array();
 $sukses = false;
 
 $nama = (isset($_POST['nama'])) ? trim($_POST['nama']) : '';
+$email = (isset($_POST['email'])) ? trim($_POST['email']) : '';
+$no_telp = (isset($_POST['no_telp'])) ? trim($_POST['no_telp']) : '';
+$id_lowongan = (isset($_POST['id_lowongan']) ? trim($_POST['id_lowongan']) : '');
+$lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
 
 if (isset($_POST['submit'])) :
 
@@ -16,9 +20,9 @@ if (isset($_POST['submit'])) :
 
 	// Jika lolos validasi lakukan hal di bawah ini
 	if (empty($errors)) :
-		$simpan = mysqli_query($koneksi, "INSERT INTO alternatif (id_alternatif, nama) VALUES ('', '$nama')");
+		$simpan = mysqli_query($koneksi, "INSERT INTO pelamar (id_pelamar, nama_pelamar, no_telp, email, id_lowongan) VALUES (NULL, '$nama', '$no_telp', '$email', $id_lowongan)");
 		if ($simpan) {
-			redirect_to('list-alternatif.php?status=sukses-baru');
+			redirect_to('list-pelamar.php?status=sukses-baru');
 		} else {
 			$errors[] = 'Data gagal disimpan';
 		}
@@ -47,16 +51,38 @@ require_once('template/header.php');
 	</div>
 <?php endif; ?>
 
-<form action="tambah-alternatif.php" method="post">
+<form action="" method="post">
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-fw fa-plus"></i> Tambah Data Alternatif</h6>
+			<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-fw fa-plus"></i> Tambah Data Pelamar</h6>
 		</div>
 		<div class="card-body">
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold">Nama</label>
 					<input autocomplete="off" type="text" name="nama" required value="<?php echo $nama; ?>" class="form-control" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="font-weight-bold">No Telpon</label>
+					<input autocomplete="off" type="text" name="no_telp" required class="form-control" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="font-weight-bold">Email</label>
+					<input autocomplete="off" type="text" name="email" required class="form-control" id="email" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="font-weight-bold" for="id_lowongan">Lowongan</label>
+					<select name="id_lowongan" id="id_lowongan" class="form-control">
+						<?php while ($row = mysqli_fetch_assoc($lowongan)) : ?>
+							<option value="<?= $row['id_lowongan']; ?>"><?= $row['nama_lowongan']; ?></option>
+						<?php endwhile; ?>
+					</select>
 				</div>
 			</div>
 		</div>
