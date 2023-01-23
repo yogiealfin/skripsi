@@ -2,7 +2,7 @@
 <?php cek_login($role = array(1)); ?>
 
 <?php
-$page = "Alternatif";
+$page = "Pelamar";
 require_once('template/header.php');
 
 ?>
@@ -63,8 +63,8 @@ endif;
 							<td><?= $data['nama_lowongan']; ?></td>
 							<td>
 								<div class="btn-group" role="group">
-									<a data-toggle="tooltip" data-placement="bottom" title="Edit Data" href="edit-alternatif.php?id=<?php echo $data['id_pelamar']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-									<a data-toggle="tooltip" data-placement="bottom" title="Hapus Data" href="hapus-alternatif.php?id=<?php echo $data['id_pelamar']; ?>" onclick="return confirm ('Apakah anda yakin untuk meghapus data ini')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+									<a data-toggle="tooltip" data-placement="bottom" title="Edit Data" href="edit-pelamar.php?id=<?php echo $data['id_pelamar']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+									<a data-toggle="tooltip" data-placement="bottom" title="Hapus Data" href="hapus-pelamar.php?id=<?php echo $data['id_pelamar']; ?>" onclick="return confirm ('Apakah anda yakin untuk meghapus data ini')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
 								</div>
 							</td>
 						</tr>
