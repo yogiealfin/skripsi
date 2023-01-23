@@ -2,7 +2,7 @@
 <?php cek_login($role = array(1)); ?>
 
 <?php
-$page = "Penilaian";
+$page = "Penilaian_pelamar";
 require_once('template/header.php');
 
 if (isset($_POST['tambah'])) :
@@ -38,20 +38,20 @@ if (isset($_POST['edit'])) :
 	$id_pelamar = $_POST['id_pelamar'];
 	$id_kriteria = $_POST['id_kriteria'];
 	$nilai = $_POST['nilai'];
-	$id_lowongan = $_POST['id_lowongan'];
+	// $id_lowongan = $_POST['id_lowongan'];
 
 	if (!$id_kriteria) {
 		$errors[] = 'ID kriteria tidak boleh kosong';
 	}
-	if (!$id_alternatif) {
+	if (!$id_pelamar) {
 		$errors[] = 'ID Alternatif kriteria tidak boleh kosong';
 	}
 	if (!$nilai) {
 		$errors[] = 'Nilai kriteria tidak boleh kosong';
 	}
-	if (!$id_lowongan) {
-		$errors[] = 'Lowongan tidak boleh kosong';
-	}
+	// if (!$id_lowongan) {
+	// 	$errors[] = 'Lowongan tidak boleh kosong';
+	// }
 
 	if (empty($errors)) :
 		$i = 0;
@@ -71,6 +71,7 @@ endif;
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-edit"></i> Data Penilaian Pelamar</h1>
+	<a href="perhitungan.php" class="btn btn-success"> <i class="fa fa-calculator"></i> Hitung </a>
 </div>
 
 <?php if (!empty($sts)) : ?>
@@ -175,7 +176,7 @@ endif;
 						</div>
 
 						<!-- Modal -->
-						<div class="modal fade" id="edit<?= $data['id_alternatif'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal fade" id="edit<?= $data['id_pelamar'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -192,7 +193,7 @@ endif;
 												$q4 = mysqli_query($koneksi, "SELECT * FROM penilaian WHERE id_pelamar='$id_pelamar' AND id_kriteria='$id_kriteria'");
 												$d4 = mysqli_fetch_assoc($q4);
 											?>
-												<input type="text" name="id_alternatif" value="<?= $data['id_alternatif'] ?>" hidden>
+												<input type="text" name="id_pelamar" value="<?= $data['id_pelamar'] ?>" hidden>
 												<input type="text" name="id_kriteria[]" value="<?= $d['id_kriteria'] ?>" hidden>
 												<div class="form-group">
 													<label class="font-weight-bold">(<?= $d['kode_kriteria'] ?>) <?= $d['nama'] ?></label>

@@ -63,8 +63,13 @@
         <div class="sidebar-heading">
           Master Data
         </div>
-
-
+        <li class="nav-item <?php if ($page == "Lowongan") {
+                              echo "active";
+                            } ?>">
+          <a class="nav-link" href="list-lowongan.php">
+            <i class="fas fa-fw fa-file"></i>
+            <span>Data Lowongan</span></a>
+        </li>
         <li class="nav-item <?php if ($page == "Pelamar") {
                               echo "active";
                             } ?>">
@@ -89,7 +94,7 @@
             <span>Data Sub Kriteria</span></a>
         </li>
 
-        <li class="nav-item <?php if ($page == "Penilaian Pelamar") {
+        <li class="nav-item <?php if ($page == "Penilaian_pelamar") {
                               echo "active";
                             } ?>">
           <a class="nav-link" href="list-penilaian-pelamar.php">
@@ -97,13 +102,13 @@
             <span>Data Penilaian Pelamar</span></a>
         </li>
 
-        <li class="nav-item <?php if ($page == "Perhitungan") {
-                              echo "active";
-                            } ?>">
+        <!-- <li class="nav-item <?php if ($page == "Perhitungan") {
+                                    echo "active";
+                                  } ?>">
           <a class="nav-link" href="perhitungan.php">
             <i class="fas fa-fw fa-calculator"></i>
             <span>Data Perhitungan</span></a>
-        </li>
+        </li> -->
 
         <li class="nav-item <?php if ($page == "Hasil") {
                               echo "active";
@@ -117,8 +122,8 @@
                               echo "active";
                             } ?>">
           <a class="nav-link" href="list-user.php">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Tambah User</span></a>
+            <i class="fas fa-fw fa-user-cog"></i>
+            <span>Data User</span></a>
         </li>
 
         <!-- Divider

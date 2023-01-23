@@ -7,7 +7,7 @@ if ($user_role == 'admin') {
 	$page = "Perhitungan";
 	require_once('template/header.php');
 
-	mysqli_query($koneksi, "TRUNCATE TABLE hasil;");
+	mysqli_query($koneksi, "TRUNCATE TABLE hasil_pelamar;");
 
 	$kriteria = array();
 	$q1 = mysqli_query($koneksi, "SELECT * FROM kriteria ORDER BY kode_kriteria ASC");
@@ -20,11 +20,11 @@ if ($user_role == 'admin') {
 		$kriteria[$krit['id_kriteria']]['ada_pilihan'] = $krit['ada_pilihan'];
 	}
 
-	$alternatif = array();
-	$q2 = mysqli_query($koneksi, "SELECT * FROM alternatif");
-	while ($alt = mysqli_fetch_array($q2)) {
-		$alternatif[$alt['id_alternatif']]['id_alternatif'] = $alt['id_alternatif'];
-		$alternatif[$alt['id_alternatif']]['nama'] = $alt['nama'];
+	$pelamar = array();
+	$q2 = mysqli_query($koneksi, "SELECT * FROM pelamar");
+	while ($alt = mysqli_fetch_assoc($q2)) {
+		$pelamar[$alt['id_pelamar']]['id_pelamar'] = $alt['id_pelamar'];
+		$pelamar[$alt['id_pelamar']]['nama_pelamar'] = $alt['nama_pelamar'];
 	}
 
 	$q3 = mysqli_query($koneksi, "SELECT * FROM kriteria");
@@ -33,6 +33,7 @@ if ($user_role == 'admin') {
 
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-calculator"></i> Data Perhitungan</h1>
+		<a href="hasil.php" class="btn btn-success"> <i class="fa fa-file"></i> Hasil </a>
 	</div>
 
 	<div class="card shadow mb-4">
@@ -59,19 +60,19 @@ if ($user_role == 'admin') {
 					<tbody>
 						<?php
 						$no = 1;
-						foreach ($alternatif as $keys) : ?>
+						foreach ($pelamar as $keys) : ?>
 							<tr align="center">
 								<td><?= $no; ?></td>
-								<td align="left"><?= $keys['nama'] ?></td>
+								<td align="left"><?= $keys['nama_pelamar'] ?></td>
 								<?php foreach ($kriteria as $key) : ?>
 									<td>
 										<?php
 										if ($key['ada_pilihan'] == 1) {
-											$q4 = mysqli_query($koneksi, "SELECT sub_kriteria.nilai FROM penilaian JOIN sub_kriteria WHERE penilaian.nilai=sub_kriteria.id_sub_kriteria AND penilaian.id_alternatif='$keys[id_alternatif]' AND penilaian.id_kriteria='$key[id_kriteria]'");
+											$q4 = mysqli_query($koneksi, "SELECT sub_kriteria.nilai FROM penilaian JOIN sub_kriteria WHERE penilaian.nilai=sub_kriteria.id_sub_kriteria AND penilaian.id_pelamar='$keys[id_pelamar]' AND penilaian.id_kriteria='$key[id_kriteria]'");
 											$data = mysqli_fetch_array($q4);
 											echo $data['nilai'];
 										} else {
-											$q4 = mysqli_query($koneksi, "SELECT nilai FROM penilaian WHERE id_alternatif='$keys[id_alternatif]' AND id_kriteria='$key[id_kriteria]'");
+											$q4 = mysqli_query($koneksi, "SELECT nilai FROM penilaian WHERE id_pelamar='$keys[id_pelamar]' AND id_kriteria='$key[id_kriteria]'");
 											$data = mysqli_fetch_array($q4);
 											echo $data['nilai'];
 										}
@@ -142,7 +143,7 @@ if ($user_role == 'admin') {
 							<?php
 							foreach ($kriteria as $key) :
 								$q5 = mysqli_query($koneksi, "SELECT SUM(bobot) as total_bobot FROM kriteria");
-								$total_bobot = mysqli_fetch_array($q5);
+								$total_bobot = mysqli_fetch_assoc($q5);
 							?>
 								<td>
 									<?php
@@ -173,7 +174,7 @@ if ($user_role == 'admin') {
 					<thead class="bg-primary text-white">
 						<tr align="center">
 							<th width="5%" rowspan="2">No</th>
-							<th rowspan="2">Nama Alternatif</th>
+							<th rowspan="2">Nama Pelamar</th>
 							<th colspan="<?= $total_kriteria; ?>">Kriteria</th>
 							<th rowspan="2" width="15%">Nilai (S)</th>
 						</tr>
@@ -188,10 +189,10 @@ if ($user_role == 'admin') {
 						<?php
 						$no = 1;
 						$total_vs = 0;
-						foreach ($alternatif as $keys) : ?>
+						foreach ($pelamar as $keys) : ?>
 							<tr align="center">
 								<td><?= $no; ?></td>
-								<td align="left"><?= $keys['nama'] ?></td>
+								<td align="left"><?= $keys['nama_pelamar'] ?></td>
 								<?php
 								$total_s = 1;
 								foreach ($kriteria as $key) : ?>
@@ -200,7 +201,7 @@ if ($user_role == 'admin') {
 										$q5 = mysqli_query($koneksi, "SELECT SUM(bobot) as total_bobot FROM kriteria");
 										$total_bobot = mysqli_fetch_array($q5);
 										if ($key['ada_pilihan'] == 1) {
-											$q4 = mysqli_query($koneksi, "SELECT sub_kriteria.nilai FROM penilaian JOIN sub_kriteria WHERE penilaian.nilai=sub_kriteria.id_sub_kriteria AND penilaian.id_alternatif='$keys[id_alternatif]' AND penilaian.id_kriteria='$key[id_kriteria]'");
+											$q4 = mysqli_query($koneksi, "SELECT sub_kriteria.nilai FROM penilaian JOIN sub_kriteria WHERE penilaian.nilai=sub_kriteria.id_sub_kriteria AND penilaian.id_pelamar='$keys[id_pelamar]' AND penilaian.id_kriteria='$key[id_kriteria]'");
 											$data = mysqli_fetch_array($q4);
 
 											if ($key['type'] == "Benefit") {
@@ -211,7 +212,7 @@ if ($user_role == 'admin') {
 												echo $nilai_s = pow($data['nilai'], $bobot_r);
 											}
 										} else {
-											$q4 = mysqli_query($koneksi, "SELECT nilai FROM penilaian WHERE id_alternatif='$keys[id_alternatif]' AND id_kriteria='$key[id_kriteria]'");
+											$q4 = mysqli_query($koneksi, "SELECT nilai FROM penilaian WHERE id_pelamar='$keys[id_pelamar]' AND id_kriteria='$key[id_kriteria]'");
 											$data = mysqli_fetch_array($q4);
 
 											if ($key['type'] == "Benefit") {
@@ -255,7 +256,7 @@ if ($user_role == 'admin') {
 					<thead class="bg-primary text-white">
 						<tr align="center">
 							<th width="5%">No</th>
-							<th>Nama Alternatif</th>
+							<th>Nama Pelamar</th>
 							<th>Perhitungan</th>
 							<th width="15%">Nilai (V)</th>
 						</tr>
@@ -263,10 +264,10 @@ if ($user_role == 'admin') {
 					<tbody>
 						<?php
 						$no = 1;
-						foreach ($alternatif as $keys) : ?>
+						foreach ($pelamar as $keys) : ?>
 							<tr align="center">
 								<td><?= $no; ?></td>
-								<td align="left"><?= $keys['nama'] ?></td>
+								<td align="left"><?= $keys['nama_pelamar'] ?></td>
 								<?php
 								$total_s = 1;
 								foreach ($kriteria as $key) : ?>
@@ -274,7 +275,7 @@ if ($user_role == 'admin') {
 									$q5 = mysqli_query($koneksi, "SELECT SUM(bobot) as total_bobot FROM kriteria");
 									$total_bobot = mysqli_fetch_array($q5);
 									if ($key['ada_pilihan'] == 1) {
-										$q4 = mysqli_query($koneksi, "SELECT sub_kriteria.nilai FROM penilaian JOIN sub_kriteria WHERE penilaian.nilai=sub_kriteria.id_sub_kriteria AND penilaian.id_alternatif='$keys[id_alternatif]' AND penilaian.id_kriteria='$key[id_kriteria]'");
+										$q4 = mysqli_query($koneksi, "SELECT sub_kriteria.nilai FROM penilaian JOIN sub_kriteria WHERE penilaian.nilai=sub_kriteria.id_sub_kriteria AND penilaian.id_pelamar='$keys[id_pelamar]' AND penilaian.id_kriteria='$key[id_kriteria]'");
 										$data = mysqli_fetch_array($q4);
 
 										if ($key['type'] == "Benefit") {
@@ -285,7 +286,7 @@ if ($user_role == 'admin') {
 											$nilai_s = pow($data['nilai'], $bobot_r);
 										}
 									} else {
-										$q4 = mysqli_query($koneksi, "SELECT nilai FROM penilaian WHERE id_alternatif='$keys[id_alternatif]' AND id_kriteria='$key[id_kriteria]'");
+										$q4 = mysqli_query($koneksi, "SELECT nilai FROM penilaian WHERE id_pelamar='$keys[id_pelamar]' AND id_kriteria='$key[id_kriteria]'");
 										$data = mysqli_fetch_array($q4);
 
 										if ($key['type'] == "Benefit") {
@@ -303,7 +304,7 @@ if ($user_role == 'admin') {
 								<td><?php echo $nilai_v = $total_s / $total_vs; ?></td>
 							</tr>
 						<?php
-							mysqli_query($koneksi, "INSERT INTO hasil (id_hasil, id_alternatif, nilai) VALUES (NULL, '$keys[id_alternatif]', '$nilai_v')");
+							mysqli_query($koneksi, "INSERT INTO hasil_pelamar (id_hasil, id_pelamar, nilai) VALUES (NULL, '$keys[id_pelamar]', '$nilai_v')");
 							$no++;
 						endforeach;
 						?>
