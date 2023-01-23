@@ -4,7 +4,7 @@ require_once('includes/init.php');
 $user_role = get_role();
 if ($user_role == 'admin') {
 
-	$page = "Perhitungan";
+	$page = "Penilaian_pelamar";
 	require_once('template/header.php');
 
 	mysqli_query($koneksi, "TRUNCATE TABLE hasil_pelamar;");
