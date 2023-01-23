@@ -56,7 +56,7 @@ require_once('template/header.php');
 </div>
 
 <?php if (!empty($errors)) : ?>
-	<div class="alert alert-info">
+	<div class="alert alert-danger">
 		<?php foreach ($errors as $error) : ?>
 			<?php echo $error; ?>
 		<?php endforeach; ?>

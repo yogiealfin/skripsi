@@ -17,6 +17,12 @@ if (isset($_POST['submit'])) :
 	if (!$nama) {
 		$errors[] = 'Nama tidak boleh kosong';
 	}
+	if (!$email) {
+		$errors[] = 'Email tidak boleh kosong';
+	}
+	if (!$no_telp) {
+		$errors[] = 'Nomor telepon tidak boleh kosong';
+	}
 
 	// Jika lolos validasi lakukan hal di bawah ini
 	if (empty($errors)) :
@@ -30,13 +36,13 @@ if (isset($_POST['submit'])) :
 
 endif;
 
-$page = "Alternatif";
+$page = "Pelamar";
 require_once('template/header.php');
 ?>
 
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Data Alternatif</h1>
+	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Data Pelamar</h1>
 
 	<a href="list-pelamar.php" class="btn btn-secondary btn-icon-split"><span class="icon text-white-50"><i class="fas fa-arrow-left"></i></span>
 		<span class="text">Kembali</span>
@@ -44,7 +50,7 @@ require_once('template/header.php');
 </div>
 
 <?php if (!empty($errors)) : ?>
-	<div class="alert alert-info">
+	<div class="alert alert-danger">
 		<?php foreach ($errors as $error) : ?>
 			<?php echo $error; ?>
 		<?php endforeach; ?>
