@@ -89,12 +89,12 @@
             <span>Data Sub Kriteria</span></a>
         </li>
 
-        <li class="nav-item <?php if ($page == "Penilaian") {
+        <li class="nav-item <?php if ($page == "Penilaian Pelamar") {
                               echo "active";
                             } ?>">
-          <a class="nav-link" href="list-penilaian.php">
+          <a class="nav-link" href="list-penilaian-pelamar.php">
             <i class="fas fa-fw fa-edit"></i>
-            <span>Data Penilaian</span></a>
+            <span>Data Penilaian Pelamar</span></a>
         </li>
 
         <li class="nav-item <?php if ($page == "Perhitungan") {
