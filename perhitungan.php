@@ -21,10 +21,11 @@ if ($user_role == 'admin') {
 	}
 
 	$pelamar = array();
-	$q2 = mysqli_query($koneksi, "SELECT * FROM pelamar");
+	$q2 = mysqli_query($koneksi, "SELECT * FROM pelamar JOIN lowongan WHERE pelamar.id_lowongan = lowongan.id_lowongan");
 	while ($alt = mysqli_fetch_assoc($q2)) {
 		$pelamar[$alt['id_pelamar']]['id_pelamar'] = $alt['id_pelamar'];
 		$pelamar[$alt['id_pelamar']]['nama_pelamar'] = $alt['nama_pelamar'];
+		$pelamar[$alt['id_pelamar']]['id_lowongan'] = $alt['id_lowongan'];
 	}
 
 	$q3 = mysqli_query($koneksi, "SELECT * FROM kriteria");
@@ -48,7 +49,7 @@ if ($user_role == 'admin') {
 					<thead class="bg-primary text-white">
 						<tr align="center">
 							<th width="5%" rowspan="2">No</th>
-							<th rowspan="2">Nama Alternatif</th>
+							<th rowspan="2">Nama Pelamar</th>
 							<th colspan="<?= $total_kriteria; ?>">Kriteria</th>
 						</tr>
 						<tr align="center">

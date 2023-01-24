@@ -9,6 +9,7 @@ if (isset($_POST['tambah'])) :
 	$id_pelamar = $_POST['id_pelamar'];
 	$id_kriteria = $_POST['id_kriteria'];
 	$nilai = $_POST['nilai'];
+	$id_lowongan = $_POST['id_lowongan'];
 
 	if (!$id_kriteria) {
 		$errors[] = 'ID kriteria tidak boleh kosong';
@@ -89,6 +90,7 @@ endif;
 	<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-table"></i> Daftar Data Penilaian Pelamar</h6>
 	</div>
+
 
 	<div class="card-body">
 		<div class="table-responsive">
