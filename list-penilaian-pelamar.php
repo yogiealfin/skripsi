@@ -5,6 +5,8 @@
 $page = "Penilaian_pelamar";
 require_once('template/header.php');
 
+$lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
+
 if (isset($_POST['tambah'])) :
 	$id_pelamar = $_POST['id_pelamar'];
 	$id_kriteria = $_POST['id_kriteria'];
@@ -42,7 +44,7 @@ if (isset($_POST['edit'])) :
 	$id_pelamar = $_POST['id_pelamar'];
 	$id_kriteria = $_POST['id_kriteria'];
 	$nilai = $_POST['nilai'];
-	// $id_lowongan = $_POST['id_lowongan'];
+	$id_lowongan = $_POST['id_lowongan'];
 
 	if (!$id_kriteria) {
 		$errors[] = 'ID kriteria tidak boleh kosong';
@@ -61,7 +63,7 @@ if (isset($_POST['edit'])) :
 		$i = 0;
 		mysqli_query($koneksi, "DELETE FROM penilaian WHERE id_pelamar = '$id_pelamar';");
 		foreach ($nilai as $key) {
-			$simpan = mysqli_query($koneksi, "INSERT INTO penilaian (id_penilaian, id_pelamar, id_kriteria, nilai, id_lowongan) VALUES (NULL, '$id_alternatif', '$id_kriteria[$i]', '$key', $id_lowongan)");
+			$simpan = mysqli_query($koneksi, "INSERT INTO penilaian (id_penilaian, id_pelamar, id_kriteria, nilai, id_lowongan) VALUES (NULL, '$id_pelamar', '$id_kriteria[$i]', '$key', $id_lowongan)");
 			$i++;
 		}
 		if ($simpan) {
@@ -75,7 +77,21 @@ endif;
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-edit"></i> Data Penilaian Pelamar</h1>
-	<a href="perhitungan.php" class="btn btn-success"> <i class="fa fa-calculator"></i> Hitung </a>
+	<form action="perhitungan.php" method="$_POST">
+		<div class="form-row align-items-center">
+			<div class="col-auto my-1">
+				<select name="id_lowongan" id="id_lowongan" class="form-control">
+					<?php while ($row = mysqli_fetch_assoc($lowongan)) : ?>
+						<option value="<?= $row['id_lowongan']; ?>"><?= $row['nama_lowongan']; ?></option>
+					<?php endwhile; ?>
+				</select>
+			</div>
+			<div class="col-auto my-1">
+				<button type="submit" class="btn btn-success"><i class="fa fa-calculator"></i> Hitung</button>
+			</div>
+			<!-- <a href="perhitungan.php" class="btn btn-success"> <i class="fa fa-calculator"></i> Hitung </a> -->
+		</div>
+	</form>
 </div>
 
 <?php if (!empty($sts)) : ?>

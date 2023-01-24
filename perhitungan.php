@@ -1,5 +1,8 @@
 <?php
 require_once('includes/init.php');
+$lowongan = $_GET['id_lowongan'];
+$rl = mysqli_query($koneksi, "SELECT * FROM lowongan");
+$nama_lowongan = mysqli_fetch_assoc($rl);
 
 $user_role = get_role();
 if ($user_role == 'admin') {
@@ -21,7 +24,7 @@ if ($user_role == 'admin') {
 	}
 
 	$pelamar = array();
-	$q2 = mysqli_query($koneksi, "SELECT * FROM pelamar JOIN lowongan WHERE pelamar.id_lowongan = lowongan.id_lowongan");
+	$q2 = mysqli_query($koneksi, "SELECT * FROM pelamar JOIN lowongan ON pelamar.id_lowongan = lowongan.id_lowongan WHERE pelamar.id_lowongan = '$lowongan'");
 	while ($alt = mysqli_fetch_assoc($q2)) {
 		$pelamar[$alt['id_pelamar']]['id_pelamar'] = $alt['id_pelamar'];
 		$pelamar[$alt['id_pelamar']]['nama_pelamar'] = $alt['nama_pelamar'];
@@ -33,7 +36,7 @@ if ($user_role == 'admin') {
 ?>
 
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
-		<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-calculator"></i> Data Perhitungan</h1>
+		<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-calculator"></i> Data Perhitungan <?= $nama_lowongan['nama_lowongan']; ?></h1>
 		<a href="hasil.php" class="btn btn-success"> <i class="fa fa-file"></i> Hasil </a>
 	</div>
 
