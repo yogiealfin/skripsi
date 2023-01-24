@@ -9,7 +9,10 @@ if (isset($_POST['tambah'])) :
 	$id_pelamar = $_POST['id_pelamar'];
 	$id_kriteria = $_POST['id_kriteria'];
 	$nilai = $_POST['nilai'];
-	$id_lowongan = $_POST['id_lowongan'];
+	$ambil_id_lowongan = mysqli_query($koneksi, "SELECT * FROM pelamar WHERE id_pelamar = $id_pelamar");
+	$result = mysqli_fetch_assoc($ambil_id_lowongan);
+	$id_lowongan = $result['id_lowongan'];
+	// $id_lowongan = $_POST['id_lowongan'];
 
 	if (!$id_kriteria) {
 		$errors[] = 'ID kriteria tidak boleh kosong';
@@ -24,7 +27,7 @@ if (isset($_POST['tambah'])) :
 	if (empty($errors)) :
 		$i = 0;
 		foreach ($nilai as $key) {
-			$simpan = mysqli_query($koneksi, "INSERT INTO penilaian (id_penilaian, id_pelamar, id_kriteria, nilai) VALUES (NULL, '$id_pelamar', '$id_kriteria[$i]', '$key')");
+			$simpan = mysqli_query($koneksi, "INSERT INTO penilaian (id_penilaian, id_pelamar, id_kriteria, id_lowongan, nilai) VALUES (NULL, '$id_pelamar', '$id_kriteria[$i]', '$id_lowongan', '$key')");
 			$i++;
 		}
 		if ($simpan) {

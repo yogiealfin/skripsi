@@ -116,7 +116,9 @@ require_once('template/header.php');
 									<label class="font-weight-bold">Lowongan</label>
 									<select name="id_lowongan" id="id_lowongan" class="form-control">
 										<?php while ($row = mysqli_fetch_assoc($lowongan)) : ?>
-											<option value="<?= $row['id_lowongan']; ?>"><?= $row['nama_lowongan']; ?></option>
+											<option value="<?= $row['id_lowongan']; ?>" <?php if ($row['id_lowongan'] == $d['id_lowongan']) {
+																							echo "selected";
+																						} ?>><?= $row['nama_lowongan']; ?></option>
 										<?php endwhile; ?>
 									</select>
 								</div>

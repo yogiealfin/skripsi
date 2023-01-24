@@ -14,7 +14,7 @@ if ($user_role == 'admin' || $user_role == 'user') {
 	<body onload="window.print();">
 
 		<div style="width:100%;margin:0 auto;text-align:center;">
-			<h4>Hasil Akhir Perankingan WP</h4>
+			<h4>Hasil Akhir Penerimaan Pegawai Baru</h4>
 			<br />
 			<table width="100%" cellspacing="0" cellpadding="5" border="1">
 				<thead>
