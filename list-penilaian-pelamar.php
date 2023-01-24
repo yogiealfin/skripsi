@@ -6,6 +6,7 @@ $page = "Penilaian_pelamar";
 require_once('template/header.php');
 
 $lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
+$getLowongan = $_POST['id_lowongan'];
 
 if (isset($_POST['tambah'])) :
 	$id_pelamar = $_POST['id_pelamar'];
@@ -77,7 +78,7 @@ endif;
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-edit"></i> Data Penilaian Pelamar</h1>
-	<form action="perhitungan.php" method="$_POST">
+	<form action="perhitungan.php" method="POST">
 		<div class="form-row align-items-center">
 			<div class="col-auto my-1">
 				<select name="id_lowongan" id="id_lowongan" class="form-control">
@@ -125,7 +126,7 @@ endif;
 				<tbody>
 					<?php
 					$no = 1;
-					$query = mysqli_query($koneksi, "SELECT * FROM pelamar INNER JOIN lowongan ON pelamar.id_lowongan = lowongan.id_lowongan");
+					$query = mysqli_query($koneksi, "SELECT * FROM pelamar INNER JOIN lowongan ON pelamar.id_lowongan = lowongan.id_lowongan WHERE pelamar.id_lowongan = '$getLowongan'");
 					while ($data = mysqli_fetch_assoc($query)) {
 					?>
 						<tr align="center">

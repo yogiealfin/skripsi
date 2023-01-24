@@ -6,6 +6,7 @@ if ($user_role == 'admin' || $user_role == 'user') {
 
 	$page = "Hasil";
 	require_once('template/header.php');
+	$lowongan = 1;
 ?>
 
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -33,7 +34,7 @@ if ($user_role == 'admin' || $user_role == 'user') {
 					<tbody>
 						<?php
 						$no = 0;
-						$query = mysqli_query($koneksi, "SELECT * FROM hasil_pelamar JOIN pelamar ON hasil_pelamar.id_pelamar=pelamar.id_pelamar ORDER BY hasil_pelamar.nilai DESC");
+						$query = mysqli_query($koneksi, "SELECT * FROM hasil_pelamar JOIN pelamar ON hasil_pelamar.id_pelamar=pelamar.id_pelamar WHERE hasil_pelamar.id_lowongan='$lowongan' ORDER BY hasil_pelamar.nilai DESC");
 						while ($data = mysqli_fetch_array($query)) :
 							$no++;
 							$ambilKuota = mysqli_query($koneksi, "SELECT * FROM pelamar INNER JOIN lowongan on pelamar.id_lowongan = lowongan.id_lowongan");

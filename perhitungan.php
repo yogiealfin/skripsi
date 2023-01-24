@@ -1,7 +1,10 @@
 <?php
 require_once('includes/init.php');
-$lowongan = $_GET['id_lowongan'];
-$rl = mysqli_query($koneksi, "SELECT * FROM lowongan");
+$lowongan = $_POST['id_lowongan'];
+if (!isset($lowongan)) {
+	header("Location: list-penilaian-pelamar.php");
+}
+$rl = mysqli_query($koneksi, "SELECT * FROM lowongan Where id_lowongan = '$lowongan'");
 $nama_lowongan = mysqli_fetch_assoc($rl);
 
 $user_role = get_role();
@@ -10,7 +13,7 @@ if ($user_role == 'admin') {
 	$page = "Penilaian_pelamar";
 	require_once('template/header.php');
 
-	mysqli_query($koneksi, "TRUNCATE TABLE hasil_pelamar;");
+	// mysqli_query($koneksi, "TRUNCATE TABLE hasil_pelamar;");
 
 	$kriteria = array();
 	$q1 = mysqli_query($koneksi, "SELECT * FROM kriteria ORDER BY kode_kriteria ASC");
@@ -308,7 +311,11 @@ if ($user_role == 'admin') {
 								<td><?php echo $nilai_v = $total_s / $total_vs; ?></td>
 							</tr>
 						<?php
-							mysqli_query($koneksi, "INSERT INTO hasil_pelamar (id_hasil, id_pelamar, nilai) VALUES (NULL, '$keys[id_pelamar]', '$nilai_v')");
+							$result = mysqli_query($koneksi, "SELECT * FROM hasil_pelamar WHERE id_pelamar = '$keys[id_pelamar]'");
+							if (mysqli_fetch_assoc($result)) {
+								return false;
+							}
+							mysqli_query($koneksi, "INSERT INTO hasil_pelamar (id_hasil, id_pelamar, id_lowongan, nilai) VALUES (NULL, '$keys[id_pelamar]', '$keys[id_lowongan]', '$nilai_v')");
 							$no++;
 						endforeach;
 						?>
