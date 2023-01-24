@@ -4,9 +4,11 @@ require_once('includes/init.php');
 $user_role = get_role();
 if ($user_role == 'admin' || $user_role == 'user') {
 
-	$page = "Hasil";
+	$page = "Hasil_Pelamar";
 	require_once('template/header.php');
-	$lowongan = 1;
+	$lowongan = $_GET['id_lowongan'];
+	$glq = mysqli_query($koneksi, "SELECT * FROM lowongan WHERE id_lowongan='$lowongan'");
+	$lq = mysqli_fetch_assoc($glq);
 ?>
 
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -18,7 +20,7 @@ if ($user_role == 'admin' || $user_role == 'user') {
 	<div class="card shadow mb-4">
 		<!-- /.card-header -->
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-table"></i> Hasil Akhir Perankingan</h6>
+			<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-table"></i> Hasil Akhir Perankingan <?= $lq['nama_lowongan']; ?></h6>
 		</div>
 
 		<div class="card-body">
@@ -37,7 +39,7 @@ if ($user_role == 'admin' || $user_role == 'user') {
 						$query = mysqli_query($koneksi, "SELECT * FROM hasil_pelamar JOIN pelamar ON hasil_pelamar.id_pelamar=pelamar.id_pelamar WHERE hasil_pelamar.id_lowongan='$lowongan' ORDER BY hasil_pelamar.nilai DESC");
 						while ($data = mysqli_fetch_array($query)) :
 							$no++;
-							$ambilKuota = mysqli_query($koneksi, "SELECT * FROM pelamar INNER JOIN lowongan on pelamar.id_lowongan = lowongan.id_lowongan");
+							$ambilKuota = mysqli_query($koneksi, "SELECT * FROM pelamar INNER JOIN lowongan on pelamar.id_lowongan = lowongan.id_lowongan WHERE pelamar.id_lowongan = '$lowongan'");
 							$kuota = mysqli_fetch_assoc($ambilKuota);
 							if ($kuota['kuota'] >= $no) {
 								$keputusan = "Diterima";

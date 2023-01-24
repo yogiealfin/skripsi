@@ -2,21 +2,40 @@
 <?php cek_login($role = array(1)); ?>
 
 <?php
-$page = "Penilaian_pelamar";
+$page = "Pelamar";
 require_once('template/header.php');
 
 $lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-edit"></i> Daftar Lowongan</h1>
+	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-edit"></i> Daftar Pelamar</h1>
 </div>
 
+<?php
+$status = isset($_GET['status']) ? $_GET['status'] : '';
+$get_lowongan = isset($_GET['id_lowongan']) ? $_GET['id_lowongan'] : '';
+$msg = '';
+switch ($status):
+	case 'sukses-baru':
+		$msg = 'Data berhasil disimpan';
+		break;
+	case 'sukses-hapus':
+		$msg = 'Data behasil dihapus';
+		break;
+	case 'sukses-edit':
+		$msg = 'Data behasil diupdate';
+		break;
+endswitch;
 
+if ($msg) :
+	echo '<div class="alert alert-info">' . $msg . '</div>';
+endif;
+?>
 <div class="card shadow mb-4">
 	<!-- /.card-header -->
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-table"></i> Daftar Data Lowongan Pelamar</h6>
+		<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-table"></i> Daftar Pelamar Berdasarkan Lowongan </h6>
 	</div>
 
 
@@ -40,9 +59,9 @@ $lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
 							<td><?= $no ?></td>
 							<td><?= $data['nama_lowongan']; ?></td>
 							<td>
-								<form action="list-penilaian-pelamar.php" method="GET">
+								<form action="list-pelamar.php" method="GET">
 									<input type="hidden" name="id_lowongan" value="<?= $data['id_lowongan']; ?>">
-									<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-pen"></i> Nilai</a></button>
+									<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-eye"></i> Lihat</a></button>
 								</form>
 							</td>
 						</tr>

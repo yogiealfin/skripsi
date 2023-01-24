@@ -2,7 +2,7 @@
 <?php cek_login($role = array(1)); ?>
 
 <?php
-$page = "Penilaian_pelamar";
+$page = "Hasil_Pelamar";
 require_once('template/header.php');
 
 $lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
@@ -40,9 +40,9 @@ $lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
 							<td><?= $no ?></td>
 							<td><?= $data['nama_lowongan']; ?></td>
 							<td>
-								<form action="list-penilaian-pelamar.php" method="GET">
+								<form action="hasil.php" method="GET">
 									<input type="hidden" name="id_lowongan" value="<?= $data['id_lowongan']; ?>">
-									<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-pen"></i> Nilai</a></button>
+									<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-eye"></i> Hasil</a></button>
 								</form>
 							</td>
 						</tr>

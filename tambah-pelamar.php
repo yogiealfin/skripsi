@@ -10,6 +10,7 @@ $email = (isset($_POST['email'])) ? trim($_POST['email']) : '';
 $no_telp = (isset($_POST['no_telp'])) ? trim($_POST['no_telp']) : '';
 $id_lowongan = (isset($_POST['id_lowongan']) ? trim($_POST['id_lowongan']) : '');
 $lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
+$getLowongan = $_GET['id_lowongan'];
 
 if (isset($_POST['submit'])) :
 
@@ -28,7 +29,7 @@ if (isset($_POST['submit'])) :
 	if (empty($errors)) :
 		$simpan = mysqli_query($koneksi, "INSERT INTO pelamar (id_pelamar, nama_pelamar, no_telp, email, id_lowongan) VALUES (NULL, '$nama', '$no_telp', '$email', $id_lowongan)");
 		if ($simpan) {
-			redirect_to('list-pelamar.php?status=sukses-baru');
+			Header('Location:daftar-pelamar.php?status=sukses-baru');
 		} else {
 			$errors[] = 'Data gagal disimpan';
 		}
@@ -81,17 +82,7 @@ require_once('template/header.php');
 					<input autocomplete="off" type="text" name="email" required class="form-control" id="email" />
 				</div>
 			</div>
-			<div class="row">
-				<div class="form-group col-md-12">
-					<label class="font-weight-bold" for="id_lowongan">Lowongan</label>
-					<select name="id_lowongan" id="id_lowongan" class="form-control" required>
-						<option value="">--Pilih Lowongan--</option>
-						<?php while ($row = mysqli_fetch_assoc($lowongan)) : ?>
-							<option value="<?= $row['id_lowongan']; ?>"><?= $row['nama_lowongan']; ?></option>
-						<?php endwhile; ?>
-					</select>
-				</div>
-			</div>
+			<input type="hidden" name="id_lowongan" value="<?= $getLowongan; ?>">
 		</div>
 		<div class="card-footer text-right">
 			<button name="submit" value="submit" type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>

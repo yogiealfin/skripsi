@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) :
 
 		$update = mysqli_query($koneksi, "UPDATE pelamar SET nama_pelamar = '$nama', no_telp = '$no_telp', email = '$email', id_lowongan = $id_lowongan WHERE id_pelamar = '$id_pelamar'");
 		if ($update) {
-			redirect_to('list-pelamar.php?status=sukses-edit');
+			redirect_to('daftar-pelamar.php?status=sukses-edit');
 		} else {
 			$errors[] = 'Data gagal diupdate';
 		}

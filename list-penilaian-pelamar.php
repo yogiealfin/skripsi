@@ -5,8 +5,10 @@
 $page = "Penilaian_pelamar";
 require_once('template/header.php');
 
-$lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
-$getLowongan = $_POST['id_lowongan'];
+$getLowongan = $_GET['id_lowongan'];
+$lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan WHERE id_lowongan = $getLowongan");
+$lq = mysqli_fetch_assoc($lowongan);
+
 
 if (isset($_POST['tambah'])) :
 	$id_pelamar = $_POST['id_pelamar'];
@@ -78,14 +80,10 @@ endif;
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-edit"></i> Data Penilaian Pelamar</h1>
-	<form action="perhitungan.php" method="POST">
+	<form action="perhitungan.php" method="GET">
 		<div class="form-row align-items-center">
 			<div class="col-auto my-1">
-				<select name="id_lowongan" id="id_lowongan" class="form-control">
-					<?php while ($row = mysqli_fetch_assoc($lowongan)) : ?>
-						<option value="<?= $row['id_lowongan']; ?>"><?= $row['nama_lowongan']; ?></option>
-					<?php endwhile; ?>
-				</select>
+				<input type="hidden" name="id_lowongan" value="<?= $getLowongan; ?>">
 			</div>
 			<div class="col-auto my-1">
 				<button type="submit" class="btn btn-success"><i class="fa fa-calculator"></i> Hitung</button>
@@ -108,7 +106,7 @@ endif;
 <div class="card shadow mb-4">
 	<!-- /.card-header -->
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-table"></i> Daftar Data Penilaian Pelamar</h6>
+		<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-table"></i> Daftar Data Penilaian Pelamar <?= $lq['nama_lowongan']; ?></h6>
 	</div>
 
 
@@ -217,6 +215,7 @@ endif;
 											?>
 												<input type="text" name="id_pelamar" value="<?= $data['id_pelamar'] ?>" hidden>
 												<input type="text" name="id_kriteria[]" value="<?= $d['id_kriteria'] ?>" hidden>
+												<input type="text" name="id_lowongan" value="<?= $data['id_lowongan'] ?>" hidden>
 												<div class="form-group">
 													<label class="font-weight-bold">(<?= $d['kode_kriteria'] ?>) <?= $d['nama'] ?></label>
 													<?php

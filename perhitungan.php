@@ -1,6 +1,6 @@
 <?php
 require_once('includes/init.php');
-$lowongan = $_POST['id_lowongan'];
+$lowongan = $_GET['id_lowongan'];
 if (!isset($lowongan)) {
 	header("Location: list-penilaian-pelamar.php");
 }
@@ -40,7 +40,7 @@ if ($user_role == 'admin') {
 
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-calculator"></i> Data Perhitungan <?= $nama_lowongan['nama_lowongan']; ?></h1>
-		<a href="hasil.php" class="btn btn-success"> <i class="fa fa-file"></i> Hasil </a>
+		<a href="daftar-hasil-pelamar.php" class="btn btn-success"> <i class="fa fa-file"></i> Hasil </a>
 	</div>
 
 	<div class="card shadow mb-4">
@@ -313,7 +313,7 @@ if ($user_role == 'admin') {
 						<?php
 							$result = mysqli_query($koneksi, "SELECT * FROM hasil_pelamar WHERE id_pelamar = '$keys[id_pelamar]'");
 							if (mysqli_fetch_assoc($result)) {
-								return false;
+								mysqli_query($koneksi, "DELETE FROM hasil_pelamar WHERE id_pelamar = '$keys[id_pelamar]'");
 							}
 							mysqli_query($koneksi, "INSERT INTO hasil_pelamar (id_hasil, id_pelamar, id_lowongan, nilai) VALUES (NULL, '$keys[id_pelamar]', '$keys[id_lowongan]', '$nilai_v')");
 							$no++;

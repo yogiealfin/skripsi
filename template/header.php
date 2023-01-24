@@ -73,7 +73,7 @@
         <li class="nav-item <?php if ($page == "Pelamar") {
                               echo "active";
                             } ?>">
-          <a class="nav-link" href="list-pelamar.php">
+          <a class="nav-link" href="daftar-pelamar.php">
             <i class="fas fa-fw fa-users"></i>
             <span>Data Pelamar</span></a>
         </li>
@@ -99,7 +99,7 @@
                             } ?>">
           <a class="nav-link" href="daftar-lowongan.php">
             <i class="fas fa-fw fa-edit"></i>
-            <span>Data Penilaian Pelamar</span></a>
+            <span>Daftar Penilaian Pelamar</span></a>
         </li>
 
         <!-- <li class="nav-item <?php if ($page == "Perhitungan") {
@@ -110,12 +110,12 @@
             <span>Data Perhitungan</span></a>
         </li> -->
 
-        <li class="nav-item <?php if ($page == "Hasil") {
+        <li class="nav-item <?php if ($page == "Hasil_Pelamar") {
                               echo "active";
                             } ?>">
-          <a class="nav-link" href="hasil.php">
+          <a class="nav-link" href="daftar-hasil-pelamar.php">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Data Hasil Akhir</span></a>
+            <span>Daftar Hasil Akhir</span></a>
         </li>
 
         <li class="nav-item <?php if ($page == "User") {

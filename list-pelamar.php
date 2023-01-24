@@ -4,17 +4,29 @@
 <?php
 $page = "Pelamar";
 require_once('template/header.php');
+$lowongan = $_GET['id_lowongan'];
+$glq = mysqli_query($koneksi, "SELECT * FROM lowongan where id_lowongan = $lowongan");
+$lq = mysqli_fetch_assoc($glq);
 
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Data Pelamar</h1>
-
-	<a href="tambah-pelamar.php" class="btn btn-success"> <i class="fa fa-plus"></i> Tambah Data </a>
+	<form action="tambah-pelamar.php" method="GET">
+		<div class="form-row align-items-center">
+			<div class="col-auto my-1">
+				<input type="hidden" name="id_lowongan" value="<?= $lowongan; ?>">
+			</div>
+			<div class="col-auto my-1">
+				<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Pelamar</button>
+			</div>
+			<!-- <a href="perhitungan.php" class="btn btn-success"> <i class="fa fa-calculator"></i> Hitung </a> -->
+		</div>
 </div>
 
 <?php
 $status = isset($_GET['status']) ? $_GET['status'] : '';
+$get_lowongan = isset($_GET['id_lowongan']) ? $_GET['id_lowongan'] : '';
 $msg = '';
 switch ($status):
 	case 'sukses-baru':
@@ -36,7 +48,7 @@ endif;
 <div class="card shadow mb-4">
 	<!-- /.card-header -->
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-table"></i> Daftar Data Pelamar</h6>
+		<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-table"></i> Daftar Data Pelamar <?= $lq['nama_lowongan']; ?></h6>
 	</div>
 
 	<div class="card-body">
@@ -53,7 +65,7 @@ endif;
 				<tbody>
 					<?php
 					$no = 0;
-					$query = mysqli_query($koneksi, "SELECT * FROM pelamar INNER JOIN lowongan ON pelamar.id_lowongan = lowongan.id_lowongan");
+					$query = mysqli_query($koneksi, "SELECT * FROM pelamar INNER JOIN lowongan ON pelamar.id_lowongan = lowongan.id_lowongan WHERE pelamar.id_lowongan = '$lowongan'");
 					while ($data = mysqli_fetch_assoc($query)) :
 						$no++;
 					?>
