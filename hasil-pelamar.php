@@ -14,7 +14,7 @@ if ($user_role == 'admin' || $user_role == 'user') {
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-chart-area"></i> Data Hasil Akhir</h1>
 
-		<a href="cetak.php" target="_blank" class="btn btn-primary"> <i class="fa fa-print"></i> Cetak Data </a>
+		<a href="cetak.php?id_lowongan=<?= $lowongan; ?>" target="_blank" class="btn btn-primary"> <i class="fa fa-print"></i> Cetak Data </a>
 	</div>
 
 	<div class="card shadow mb-4">

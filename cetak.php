@@ -1,5 +1,8 @@
 <?php
 require_once('includes/init.php');
+$lowongan = $_GET['id_lowongan'];
+$gln = mysqli_query($koneksi, "SELECT * FROM lowongan");
+$ln = mysqli_fetch_assoc($gln);
 
 $user_role = get_role();
 if ($user_role == 'admin' || $user_role == 'user') {
@@ -14,7 +17,7 @@ if ($user_role == 'admin' || $user_role == 'user') {
 	<body onload="window.print();">
 
 		<div style="width:100%;margin:0 auto;text-align:center;">
-			<h4>Hasil Akhir Penerimaan Pegawai Baru</h4>
+			<h4>Hasil Akhir Penerimaan Pegawai Baru <?= $ln['nama_lowongan']; ?></h4>
 			<br />
 			<table width="100%" cellspacing="0" cellpadding="5" border="1">
 				<thead>
@@ -28,7 +31,7 @@ if ($user_role == 'admin' || $user_role == 'user') {
 				<tbody>
 					<?php
 					$no = 0;
-					$query = mysqli_query($koneksi, "SELECT * FROM hasil_pelamar JOIN pelamar ON hasil_pelamar.id_pelamar=pelamar.id_pelamar ORDER BY hasil_pelamar.nilai DESC");
+					$query = mysqli_query($koneksi, "SELECT * FROM hasil_pelamar JOIN pelamar ON hasil_pelamar.id_pelamar=pelamar.id_pelamar WHERE hasil_pelamar.id_lowongan='$lowongan' ORDER BY hasil_pelamar.nilai DESC");
 					while ($data = mysqli_fetch_array($query)) {
 						$no++;
 						$ambilKuota = mysqli_query($koneksi, "SELECT * FROM pelamar INNER JOIN lowongan on pelamar.id_lowongan = lowongan.id_lowongan");

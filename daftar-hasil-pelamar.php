@@ -40,7 +40,7 @@ $lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
 							<td><?= $no ?></td>
 							<td><?= $data['nama_lowongan']; ?></td>
 							<td>
-								<form action="hasil.php" method="GET">
+								<form action="hasil-pelamar.php" method="GET">
 									<input type="hidden" name="id_lowongan" value="<?= $data['id_lowongan']; ?>">
 									<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-eye"></i> Hasil</a></button>
 								</form>
