@@ -97,7 +97,7 @@
         <li class="nav-item <?php if ($page == "Penilaian_pelamar") {
                               echo "active";
                             } ?>">
-          <a class="nav-link" href="daftar-lowongan.php">
+          <a class="nav-link" href="daftar-nilai-pelamar.php">
             <i class="fas fa-fw fa-edit"></i>
             <span>Daftar Penilaian Pelamar</span></a>
         </li>

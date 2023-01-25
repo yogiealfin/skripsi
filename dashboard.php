@@ -75,7 +75,7 @@ if ($user_role == 'admin' || $user_role == 'user') {
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="list-pelamar.php" class="text-secondary text-decoration-none">Data Pelamar</a></div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="daftar-pelamar.php" class="text-secondary text-decoration-none">Data Pelamar</a></div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -90,7 +90,7 @@ if ($user_role == 'admin' || $user_role == 'user') {
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="list-penilaian.php" class="text-secondary text-decoration-none">Data Penilaian</a></div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="daftar-nilai-pelamar.php" class="text-secondary text-decoration-none">Data Penilaian</a></div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-edit fa-2x text-gray-300"></i>
@@ -105,7 +105,7 @@ if ($user_role == 'admin' || $user_role == 'user') {
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="hasil.php" class="text-secondary text-decoration-none">Data Hasil Akhir</a></div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="daftar-hasil-pelamar.php" class="text-secondary text-decoration-none">Data Hasil Akhir</a></div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-chart-area fa-2x text-gray-300"></i>

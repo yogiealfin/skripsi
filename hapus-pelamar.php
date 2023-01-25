@@ -19,7 +19,7 @@ if (!$id_pelamar) {
 		mysqli_query($koneksi, "DELETE FROM pelamar WHERE id_pelamar = '$id_pelamar';");
 		mysqli_query($koneksi, "DELETE FROM penilaian WHERE id_pelamar = '$id_pelamar';");
 		mysqli_query($koneksi, "DELETE FROM hasil_pelamar WHERE id_pelamar = '$id_pelamar';");
-		redirect_to('list-pelamar.php?status=sukses-hapus');
+		redirect_to('daftar-pelamar.php?status=sukses-hapus');
 	}
 }
 ?>
