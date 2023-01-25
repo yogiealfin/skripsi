@@ -24,7 +24,7 @@ if ($user_role == 'admin' || $user_role == 'user') {
 					<tr align="center">
 						<th width="15%">Rank</th>
 						<th>Nama Pelamar</th>
-						<th>Nilai (V)</th>
+						<th>Nilai</th>
 						<th>Keputusan</th>
 					</tr>
 				</thead>

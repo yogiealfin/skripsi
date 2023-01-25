@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) :
 		$update = mysqli_query($koneksi, "UPDATE user SET nama = '$nama', email = '$email', role = '$role' WHERE id_user = '$id_user'");
 
 		if ($password) {
-			$pass = sha1($password);
+			$pass = password_hash($password, PASSWORD_DEFAULT);;
 			$update = mysqli_query($koneksi, "UPDATE user SET nama = '$nama',  password = '$pass', email = '$email', role = '$role' WHERE id_user = '$id_user'");
 		}
 		if ($update) {

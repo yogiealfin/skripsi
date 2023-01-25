@@ -152,7 +152,7 @@
       </li>	 -->
 
       <?php
-      } elseif ($user_role == 'user') {
+      } elseif ($user_role == 'kadiv') {
       ?>
 
         <!-- Divider -->

@@ -4,6 +4,8 @@
 <?php
 $errors = array();
 $sukses = false;
+$query = "SELECT * FROM divisi";
+
 
 if (isset($_POST['submit'])) :
 	$username = $_POST['username'];
@@ -12,6 +14,7 @@ if (isset($_POST['submit'])) :
 	$nama = $_POST['nama'];
 	$email = $_POST['email'];
 	$role = $_POST['role'];
+	$id_divisi = $_POST['id_divisi'];
 
 	if (!$username) {
 		$errors[] = 'Username tidak boleh kosong';
@@ -48,7 +51,7 @@ if (isset($_POST['submit'])) :
 
 	if (empty($errors)) :
 		$pass = password_hash($password, PASSWORD_DEFAULT);
-		$simpan = mysqli_query($koneksi, "INSERT INTO user (id_user, username, password, nama, email, role, id_divisi) VALUES (NULL, '$username', '$pass', '$nama', '$email', '$role', 11)");
+		$simpan = mysqli_query($koneksi, "INSERT INTO user (id_user, username, password, nama, email, role, id_divisi) VALUES (NULL, '$username', '$pass', '$nama', '$email', '$role', '$id_divisi')");
 		if ($simpan) {
 			redirect_to('list-user.php?status=sukses-baru');
 		} else {
@@ -62,6 +65,8 @@ endif;
 <?php
 $page = "User";
 require_once('template/header.php');
+$getDivisi = mysqli_query($koneksi, $query);
+// $divisi = mysqli_fetch_assoc($getDivisi);
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -112,12 +117,21 @@ require_once('template/header.php');
 					<input autocomplete="off" type="email" name="email" required class="form-control" />
 				</div>
 
-				<div class="form-group col-md-6">
+				<div class="form-group col-md-6" hidden>
 					<label class="font-weight-bold">Level</label>
 					<select name="role" required class="form-control">
 						<option value="">--Pilih--</option>
 						<option value="1">Administrator</option>
-						<option value="2">User</option>
+						<option value="2" selected>Kadiv</option>
+					</select>
+				</div>
+				<div class="form-group col-md-6">
+					<label class="font-weight-bold">Divisi</label>
+					<select name="id_divisi" required class="form-control">
+						<option value="">--Pilih--</option>
+						<?php foreach ($getDivisi as $key) : ?>
+							<option value="<?= $key['id_divisi']; ?>"><?= $key['nama_divisi']; ?></option>
+						<?php endforeach; ?>
 					</select>
 				</div>
 			</div>

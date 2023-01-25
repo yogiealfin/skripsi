@@ -73,13 +73,13 @@ require_once('template/header.php');
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold">No Telpon</label>
-					<input autocomplete="off" type="text" name="no_telp" required class="form-control" />
+					<input autocomplete="off" type="tel" name="no_telp" pattern="[0-9]+" minlength="11" maxlength="13" required class="form-control" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold">Email</label>
-					<input autocomplete="off" type="text" name="email" required class="form-control" id="email" />
+					<input autocomplete="off" type="email" name="email" required class="form-control" id="email" />
 				</div>
 			</div>
 			<input type="hidden" name="id_lowongan" value="<?= $getLowongan; ?>">

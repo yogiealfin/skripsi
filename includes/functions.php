@@ -20,10 +20,9 @@ function get_role() {
 		if($_SESSION['role'] == '1') {
 			return 'admin';
 		} else {
-			return 'user';
+			return 'kadiv';
 		}
 	} else {
 		return false;
 	}	
 }
-?>
