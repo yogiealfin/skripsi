@@ -1,2 +1,2 @@
-# skripsi
-<h1> Program Skripsi Pasti Beres!!!!!</h1>
+#Program Skripsi Pasti Beres!!!!!
+<p>Semangat dikit lagi!!!!!!</p>
