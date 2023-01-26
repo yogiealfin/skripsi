@@ -28,7 +28,10 @@ if (isset($_POST['submit'])) :
 		$errors[] = 'Bobot kriteria tidak boleh kosong';
 	}
 
-	if (empty($errors)) :
+	$query = "SELECT SUM(bobot) AS total_bobot FROM  indikator";
+	$sum = mysqli_query($koneksi, $query);
+	$total_bobot = mysqli_fetch_assoc($sum);
+	if (empty($errors) && $total_bobot['total_bobot'] + $bobot <= 100) {
 
 		$simpan = mysqli_query($koneksi, "INSERT INTO indikator (id_indikator, kode_indikator, nama_indikator, type, bobot, ada_pilihan) VALUES (NULL, '$kode_kriteria', '$nama', '$type', '$bobot', '$ada_pilihan')");
 		if ($simpan) {
@@ -36,7 +39,9 @@ if (isset($_POST['submit'])) :
 		} else {
 			$errors[] = 'Data gagal disimpan';
 		}
-	endif;
+	} else {
+		$errors[] = 'Total bobot indikator melebihi 100';
+	}
 
 endif;
 ?>
