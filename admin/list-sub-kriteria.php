@@ -201,7 +201,7 @@ if ($cek <= 0) {
 													</div>
 													<div class="form-group">
 														<label class="font-weight-bold">Nilai</label>
-														<input type="number" step="0.001" autocomplete="off" name="nilai" class="form-control" value="<?= $d['nilai'] ?>" required>
+														<input type="number" step="1" autocomplete="off" name="nilai" class="form-control" value="<?= $d['nilai'] ?>" required>
 													</div>
 												</div>
 												<div class="modal-footer">

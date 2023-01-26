@@ -125,7 +125,7 @@ if ($user_role == 'admin') {
 
 								<div class="form-group col-md-6">
 									<label class="font-weight-bold">Bobot Kriteria</label>
-									<input autocomplete="off" type="number" name="bobot" required value="<?php echo $d['bobot']; ?>" step="0.01" class="form-control" />
+									<input autocomplete="off" type="number" name="bobot" required value="<?php echo $d['bobot']; ?>" step="1" class="form-control" />
 								</div>
 
 								<div class="form-group col-md-6" hidden>

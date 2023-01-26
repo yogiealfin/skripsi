@@ -4,14 +4,18 @@
 <?php
 $errors = array();
 $sukses = false;
-$id_low = (isset($_GET['id_lowongan']) ? $_GET['id_lowongan'] : '');
+$id_div = (isset($_GET['id_divisi']) ? $_GET['id_divisi'] : '');
 
 $nama = (isset($_POST['nama'])) ? trim($_POST['nama']) : '';
 $email = (isset($_POST['email'])) ? trim($_POST['email']) : '';
 $no_telp = (isset($_POST['no_telp'])) ? trim($_POST['no_telp']) : '';
-$id_lowongan = (isset($_POST['id_lowongan']) ? trim($_POST['id_lowongan']) : '');
-$lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
-$getLowongan = $_GET['id_lowongan'];
+$tgl_bergabung = (isset($_POST['tgl_bergabung'])) ? trim($_POST['tgl_bergabung']) : '';
+$id_status = (isset($_POST['id_status'])) ? trim($_POST['id_status']) : '';
+$id_divisi = (isset($_POST['id_divisi']) ? trim($_POST['id_divisi']) : '');
+// $getStatus = mysqli_query($koneksi, "SELECT * FROM status");
+// $status = mysqli_fetch_assoc($getStatus);
+$getDivisi = mysqli_query($koneksi, "SELECT * FROM divisi");
+$divisi = $_GET['id_divisi'];
 
 if (isset($_POST['submit'])) :
 
@@ -25,12 +29,15 @@ if (isset($_POST['submit'])) :
 	if (!$no_telp) {
 		$errors[] = 'Nomor telepon tidak boleh kosong';
 	}
+	if (!$tgl_bergabung) {
+		$errors[] = 'Tanggal bergabung tidak boleh kosong';
+	}
 
 	// Jika lolos validasi lakukan hal di bawah ini
 	if (empty($errors)) :
-		$simpan = mysqli_query($koneksi, "INSERT INTO pelamar (id_pelamar, nama_pelamar, no_telp, email, id_lowongan) VALUES (NULL, '$nama', '$no_telp', '$email', $id_lowongan)");
+		$simpan = mysqli_query($koneksi, "INSERT INTO pegawai (id_pegawai, nama_pegawai, no_telp, email, tgl_bergabung, id_status, id_divisi) VALUES (NULL, '$nama', '$no_telp', '$email', '$tgl_bergabung', '$id_status', '$id_divisi')");
 		if ($simpan) {
-			Header('Location:daftar-pelamar.php?status=sukses-baru');
+			Header('Location:list-pegawai.php?status=sukses-baru&id_divisi=' . $divisi);
 		} else {
 			$errors[] = 'Data gagal disimpan';
 		}
@@ -38,15 +45,15 @@ if (isset($_POST['submit'])) :
 
 endif;
 
-$page = "Pelamar";
+$page = "Pegawai";
 require_once('../template/header.php');
 ?>
 
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Data Pelamar</h1>
+	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Data Pegawai</h1>
 
-	<a href="list-pelamar.php?id_lowongan=<?= $id_low; ?>" class="btn btn-secondary btn-icon-split"><span class="icon text-white-50"><i class="fas fa-arrow-left"></i></span>
+	<a href="list-pegawai.php?id_divisi=<?= $id_div; ?>" class="btn btn-secondary btn-icon-split"><span class="icon text-white-50"><i class="fas fa-arrow-left"></i></span>
 		<span class="text">Kembali</span>
 	</a>
 </div>
@@ -79,11 +86,18 @@ require_once('../template/header.php');
 			</div>
 			<div class="row">
 				<div class="form-group col-md-12">
-					<label class="font-weight-bold">Email</label>
+					<label class="font-weight-bold" for="email">Email</label>
 					<input autocomplete="off" type="email" name="email" required class="form-control" id="email" />
 				</div>
 			</div>
-			<input type="hidden" name="id_lowongan" value="<?= $getLowongan; ?>">
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="font-weight-bold" for="tgl_bergabung">Tanggal Bergabung</label>
+					<input autocomplete="off" type="date" name="tgl_bergabung" required class="form-control" id="tgl_bergabung" />
+				</div>
+			</div>
+			<input type="hidden" name="id_status" value="1">
+			<input type="hidden" name="id_divisi" value="<?= $id_div; ?>">
 		</div>
 		<div class="card-footer text-right">
 			<button name="submit" value="submit" type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>

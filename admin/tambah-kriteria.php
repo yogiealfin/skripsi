@@ -92,7 +92,7 @@ require_once('../template/header.php');
 
 				<div class="form-group col-md-6">
 					<label class="font-weight-bold">Bobot Kriteria</label>
-					<input autocomplete="off" type="number" name="bobot" required step="0.01" class="form-control" />
+					<input autocomplete="off" type="number" name="bobot" required step="1" class="form-control" />
 				</div>
 
 				<div class="form-group col-md-6" hidden>

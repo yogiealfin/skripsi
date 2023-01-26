@@ -140,6 +140,13 @@
             <i class="fas fa-fw fa-cube"></i>
             <span>Data Indikator Penilaian</span></a>
         </li>
+        <li class="nav-item <?php if ($page == "Pegawai") {
+                              echo "active";
+                            } ?>">
+          <a class="nav-link" href="daftar-pegawai.php">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Data Pegawai</span></a>
+        </li>
         <li class="nav-item <?php if ($page == "User") {
                               echo "active";
                             } ?>">
