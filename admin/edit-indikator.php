@@ -31,8 +31,15 @@ if ($user_role == 'admin') {
 			$errors[] = 'Bobot Indikator tidak boleh kosong';
 		}
 
+		$query = "SELECT SUM(bobot) AS total_bobot FROM  indikator";
+		$sum = mysqli_query($koneksi, $query);
+		$total_bobot = mysqli_fetch_assoc($sum);
+		$ambilBobot = "SELECT * FROM indikator where id_indikator = $id_indikator";
+		$ind_bobot = mysqli_query($koneksi, $ambilBobot);
+		$bobotTerpilih = mysqli_fetch_assoc($ind_bobot);
+
 		// Jika lolos validasi lakukan hal di bawah ini
-		if (empty($errors)) {
+		if (empty($errors) && $total_bobot['total_bobot'] - $bobotTerpilih['bobot'] + $bobot <= 100) {
 
 			$update = mysqli_query($koneksi, "UPDATE indikator SET kode_indikator = '$kode_indikator', nama_indikator = '$nama_indikator', type = '$type', bobot = '$bobot', ada_pilihan = '$ada_pilihan' WHERE id_indikator = '$id_indikator'");
 
@@ -41,6 +48,8 @@ if ($user_role == 'admin') {
 			} else {
 				$errors[] = 'Data gagal diupdate';
 			}
+		} else {
+			$errors[] = 'Total bobot melebihi 100';
 		}
 	}
 
