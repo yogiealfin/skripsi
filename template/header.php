@@ -12,15 +12,15 @@
   <title>Sistem Informasi Kepegawaian PT. Cipta Adhi Potensia</title>
 
   <!-- Custom fonts for this template-->
-  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+  <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="../assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <script src="../assets/vendor/jquery/jquery.min.js"></script>
+  <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
 
 </head>
 
@@ -61,7 +61,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-          Master Data
+          Data Pelamar
         </div>
         <li class="nav-item <?php if ($page == "Lowongan") {
                               echo "active";
@@ -118,6 +118,28 @@
             <span>Daftar Hasil Akhir</span></a>
         </li>
 
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+          Data Pegawai
+        </div>
+        <li class="nav-item <?php if ($page == "Periode_Penilaian") {
+                              echo "active";
+                            } ?>">
+          <a class="nav-link" href="list-periode-penilaian.php">
+            <i class="fas fa-fw fa-calendar"></i>
+            <span>Data Periode Penilaian</span></a>
+        </li>
+        <li class="nav-item <?php if ($page == "Indikator") {
+                              echo "active";
+                            } ?>">
+          <a class="nav-link" href="list-indikator.php">
+            <i class="fas fa-fw fa-cube"></i>
+            <span>Data Indikator Penilaian</span></a>
+        </li>
         <li class="nav-item <?php if ($page == "User") {
                               echo "active";
                             } ?>">
@@ -125,6 +147,7 @@
             <i class="fas fa-fw fa-user-cog"></i>
             <span>Data User</span></a>
         </li>
+
 
         <!-- Divider
       <hr class="sidebar-divider"> -->
@@ -162,6 +185,14 @@
         <div class="sidebar-heading">
           Master Data
         </div>
+
+        <li class="nav-item <?php if ($page == "Penilaian_Pegawai") {
+                              echo "active";
+                            } ?>">
+          <a class="nav-link" href="daftar-nilai-pegawai.php">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Data Hasil Akhir</span></a>
+        </li>
 
         <li class="nav-item <?php if ($page == "Hasil") {
                               echo "active";
@@ -227,11 +258,11 @@
                   echo $_SESSION['username'];
                   ?>
                 </span>
-                <img class="img-profile rounded-circle" src="assets/img/user.png">
+                <img class="img-profile rounded-circle" src="../assets/img/user.png">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="list-profile.php">
+                <a class="dropdown-item" href="../admin/list-profile.php">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
