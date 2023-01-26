@@ -60,7 +60,7 @@ require_once('../template/header.php');
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Data Pelamar</h1>
+	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Data Pegawai</h1>
 
 	<a href="list-pegawai.php?id_divisi=<?= $id_div; ?>" class="btn btn-secondary btn-icon-split"><span class="icon text-white-50"><i class="fas fa-arrow-left"></i></span>
 		<span class="text">Kembali</span>
@@ -119,7 +119,7 @@ require_once('../template/header.php');
 							<div class="row">
 								<div class="form-group col-md-12">
 									<label class="font-weight-bold" for="no_telp">No Telpon</label>
-									<input autocomplete="off" type="text" name="no_telp" required value="<?php echo $d['no_telp']; ?>" class="form-control" />
+									<input autocomplete="off" type="text" name="no_telp" required pattern="[0-9]+" minlength="11" maxlength="13" value="<?php echo $d['no_telp']; ?>" class="form-control" />
 								</div>
 							</div>
 							<div class="row">

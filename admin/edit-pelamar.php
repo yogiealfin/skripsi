@@ -104,7 +104,7 @@ require_once('../template/header.php');
 							<div class="row">
 								<div class="form-group col-md-12">
 									<label class="font-weight-bold" for="no_telp">No Telpon</label>
-									<input autocomplete="off" type="text" name="no_telp" required value="<?php echo $d['no_telp']; ?>" class="form-control" />
+									<input autocomplete="off" type="text" name="no_telp" pattern="[0-9]+" minlength="11" maxlength="13" required value="<?php echo $d['no_telp']; ?>" class="form-control" />
 								</div>
 							</div>
 							<div class="row">
