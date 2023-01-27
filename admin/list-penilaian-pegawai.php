@@ -81,7 +81,7 @@ endif;
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-edit"></i> Data Penilaian Pegawai</h1>
-	<form action="perhitungan_pegawai.php" method="GET">
+	<form action="perhitungan-pegawai.php" method="GET">
 		<div class="form-row align-items-center">
 			<div class="col-auto my-1">
 				<input type="hidden" name="id_periode" value="<?= $getPeriode; ?>">
@@ -133,7 +133,7 @@ endif;
 							<td align="left"><?= $data['nama_pegawai'] ?></td>
 							<?php
 							$id_pegawai = $data['id_pegawai'];
-							$q = mysqli_query($koneksi, "SELECT * FROM penilaian_pegawai WHERE id_pegawai='$id_pegawai'");
+							$q = mysqli_query($koneksi, "SELECT * FROM penilaian_pegawai WHERE id_pegawai='$id_pegawai' AND id_periode='$periode[id_periode]'");
 							$cek_tombol = mysqli_num_rows($q);
 							?>
 							<td><?= $data['nama_divisi']; ?></td>
