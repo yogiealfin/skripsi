@@ -115,7 +115,7 @@
                             } ?>">
           <a class="nav-link" href="daftar-hasil-pelamar.php">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Daftar Hasil Akhir</span></a>
+            <span>Daftar Hasil Akhir Pelamar</span></a>
         </li>
 
 
@@ -146,6 +146,13 @@
           <a class="nav-link" href="daftar-pegawai.php">
             <i class="fas fa-fw fa-users"></i>
             <span>Data Pegawai</span></a>
+        </li>
+        <li class="nav-item <?php if ($page == "Hasil_Pegawai") {
+                              echo "active";
+                            } ?>">
+          <a class="nav-link" href="daftar-hasil-pegawai.php">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Data Hasil Akhir Pegawai</span></a>
         </li>
         <li class="nav-item <?php if ($page == "User") {
                               echo "active";
@@ -201,13 +208,6 @@
             <span>Data Penilaian Pegawai</span></a>
         </li>
 
-        <li class="nav-item <?php if ($page == "Hasil") {
-                              echo "active";
-                            } ?>">
-          <a class="nav-link" href="hasil.php">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Data Hasil Akhir</span></a>
-        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
