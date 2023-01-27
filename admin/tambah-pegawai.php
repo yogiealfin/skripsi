@@ -2,6 +2,7 @@
 <?php cek_login($role = array(1)); ?>
 
 <?php
+$today = date('Y-m-d');
 $errors = array();
 $sukses = false;
 $id_div = (isset($_GET['id_divisi']) ? $_GET['id_divisi'] : '');
@@ -69,13 +70,13 @@ require_once('../template/header.php');
 <form action="" method="post">
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-fw fa-plus"></i> Tambah Data Pelamar</h6>
+			<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-fw fa-plus"></i> Tambah Data Pegawai</h6>
 		</div>
 		<div class="card-body">
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold">Nama</label>
-					<input autocomplete="off" type="text" name="nama" required value="<?php echo $nama; ?>" class="form-control" />
+					<input autocomplete="off" type="text" name="nama" required class="form-control" />
 				</div>
 			</div>
 			<div class="row">
@@ -93,7 +94,7 @@ require_once('../template/header.php');
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold" for="tgl_bergabung">Tanggal Bergabung</label>
-					<input autocomplete="off" type="date" name="tgl_bergabung" required class="form-control" id="tgl_bergabung" />
+					<input autocomplete="off" type="date" name="tgl_bergabung" required class="form-control" id="tgl_bergabung" value="<?= $today; ?>" />
 				</div>
 			</div>
 			<input type="hidden" name="id_status" value="1">
