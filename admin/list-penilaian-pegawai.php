@@ -45,10 +45,10 @@ if (isset($_POST['tambah'])) :
 endif;
 
 if (isset($_POST['edit'])) :
-	$id_pelamar = $_POST['id_pegawai'];
-	$id_kriteria = $_POST['id_indikator'];
+	$id_pegawai = $_POST['id_pegawai'];
+	$id_indikator = $_POST['id_indikator'];
 	$nilai = $_POST['nilai'];
-	$id_lowongan = $_POST['id_periode'];
+	$id_periode = $_POST['id_periode'];
 
 	if (!$id_indikator) {
 		$errors[] = 'ID indikator tidak boleh kosong';
@@ -65,9 +65,9 @@ if (isset($_POST['edit'])) :
 
 	if (empty($errors)) :
 		$i = 0;
-		mysqli_query($koneksi, "DELETE FROM penilaian WHERE id_pegawai = '$id_pegawai';");
+		mysqli_query($koneksi, "DELETE FROM penilaian_pegawai WHERE id_pegawai = '$id_pegawai';");
 		foreach ($nilai as $key) {
-			$simpan = mysqli_query($koneksi, "INSERT INTO penilaian (id_penilaian, id_pegawai, id_indikator, nilai, id_lperiode) VALUES (NULL, '$id_pegawai', '$id_indikator[$i]', '$key', $id_periode)");
+			$simpan = mysqli_query($koneksi, "INSERT INTO penilaian_pegawai (id_penilaian, id_pegawai, id_indikator, nilai, id_periode) VALUES (NULL, '$id_pegawai', '$id_indikator[$i]', '$key', $id_periode)");
 			$i++;
 		}
 		if ($simpan) {
@@ -217,7 +217,7 @@ endif;
 											?>
 												<input type="text" name="id_pegawai" value="<?= $data['id_pegawai'] ?>" hidden>
 												<input type="text" name="id_indikator[]" value="<?= $d['id_indikator'] ?>" hidden>
-												<input type="text" name="id_periode" value="<?= $data['id_periode'] ?>" hidden>
+												<input type="text" name="id_periode" value="<?= $periode['id_periode'] ?>" hidden>
 												<div class="form-group">
 													<label class="font-weight-bold">(<?= $d['kode_indikator'] ?>) <?= $d['nama_indikator'] ?></label>
 													<?php
