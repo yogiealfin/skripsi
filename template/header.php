@@ -197,8 +197,8 @@
                               echo "active";
                             } ?>">
           <a class="nav-link" href="daftar-nilai-pegawai.php">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Data Hasil Akhir</span></a>
+            <i class="fas fa-fw fa-edit"></i>
+            <span>Data Penilaian Pegawai</span></a>
         </li>
 
         <li class="nav-item <?php if ($page == "Hasil") {
