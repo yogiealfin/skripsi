@@ -313,7 +313,7 @@ if ($user_role == 'admin') {
 						<?php
 							$result = mysqli_query($koneksi, "SELECT * FROM hasil_pelamar WHERE id_pelamar = '$keys[id_pelamar]'");
 							if (mysqli_fetch_assoc($result)) {
-								// mysqli_query($koneksi, "DELETE FROM hasil_pelamar WHERE id_pelamar = '$keys[id_pelamar]'");
+								mysqli_query($koneksi, "DELETE FROM hasil_pelamar WHERE id_pelamar = '$keys[id_pelamar]'");
 							}
 							mysqli_query($koneksi, "INSERT INTO hasil_pelamar (id_hasil, id_pelamar, id_lowongan, nilai) VALUES (NULL, '$keys[id_pelamar]', '$keys[id_lowongan]', '$nilai_v')");
 							$no++;

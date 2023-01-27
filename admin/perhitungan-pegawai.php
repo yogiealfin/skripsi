@@ -264,7 +264,7 @@ if ($user_role == 'kadiv') {
 						<?php
 							$result = mysqli_query($koneksi, "SELECT * FROM hasil_pegawai WHERE id_pegawai='$keys[id_pegawai]' AND id_periode = '$periode[id_periode]'");
 							if (mysqli_fetch_assoc($result)) {
-								mysqli_query($koneksi, "DELETE FROM hasil_pegawai WHERE id_pegawai='['id_pegawai']' AND id_periode = '$periode[id_periode]'");
+								mysqli_query($koneksi, "DELETE FROM hasil_pegawai WHERE id_pegawai='$keys[id_pegawai]' AND id_periode = '$periode[id_periode]'");
 							}
 							mysqli_query($koneksi, "INSERT INTO hasil_pegawai (id_hasil, id_pegawai, id_periode, nilai) VALUES (NULL, '$keys[id_pegawai]', '$periode[id_periode]', '$nilai_v')");
 							$no++;

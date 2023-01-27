@@ -87,7 +87,7 @@ endif;
 				<input type="hidden" name="id_periode" value="<?= $getPeriode; ?>">
 			</div>
 			<div class="col-auto my-1">
-				<button type="submit" class="btn btn-success"><i class="fa fa-calculator"></i> Hitung</button>
+				<button type="submit" class="btn btn-success"><i class="fa fa-calculator"></i> Kirim Data</button>
 			</div>
 			<!-- <a href="perhitungan.php" class="btn btn-success"> <i class="fa fa-calculator"></i> Hitung </a> -->
 		</div>
@@ -125,7 +125,7 @@ endif;
 				<tbody>
 					<?php
 					$no = 1;
-					$query = mysqli_query($koneksi, "SELECT * FROM pegawai INNER JOIN divisi ON pegawai.id_divisi = divisi.id_divisi INNER JOIN status ON pegawai.id_status = status.id_status WHERE pegawai.id_status = '$periode[id_status]'");
+					$query = mysqli_query($koneksi, "SELECT * FROM pegawai INNER JOIN divisi ON pegawai.id_divisi = divisi.id_divisi INNER JOIN status ON pegawai.id_status = status.id_status WHERE pegawai.id_status = '$periode[id_status]' AND pegawai.id_divisi = '$_SESSION[divisi]'");
 					while ($data = mysqli_fetch_assoc($query)) {
 					?>
 						<tr align="center">
