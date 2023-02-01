@@ -116,7 +116,7 @@ if ($user_role == 'admin' || $user_role == 'kadiv') {
                 </div>
             </div>
         <?php
-        } elseif ($user_role == 'user') {
+        } elseif ($user_role == 'kadiv') {
         ?>
             <!-- Content Row -->
             <div class="alert alert-success">
