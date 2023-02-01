@@ -39,6 +39,7 @@ if ($user_role == 'admin' || $user_role == 'kadiv') {
 						$no = 0;
 						$query = mysqli_query($koneksi, "SELECT * FROM hasil_pegawai JOIN pegawai ON hasil_pegawai.id_pegawai=pegawai.id_pegawai JOIN divisi on pegawai.id_divisi = divisi.id_divisi WHERE hasil_pegawai.id_periode='$periode' ORDER BY hasil_pegawai.nilai DESC");
 						while ($data = mysqli_fetch_assoc($query)) :
+							$no++;
 							if ($lq['id_status'] == 1) {
 								if ($data['nilai'] >= 80) {
 									$keputusan = "Kontrak diperpanjang";
