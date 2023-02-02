@@ -6,6 +6,7 @@ $ada_error = false;
 $result = '';
 
 $id_pelamar = (isset($_GET['id'])) ? trim($_GET['id']) : '';
+$id_low = (isset($_GET['id_lowongan']) ? $_GET['id_lowongan'] : '');
 
 if (!$id_pelamar) {
 	$ada_error = 'Maaf, data tidak dapat diproses.';
@@ -19,7 +20,7 @@ if (!$id_pelamar) {
 		mysqli_query($koneksi, "DELETE FROM pelamar WHERE id_pelamar = '$id_pelamar';");
 		mysqli_query($koneksi, "DELETE FROM penilaian WHERE id_pelamar = '$id_pelamar';");
 		mysqli_query($koneksi, "DELETE FROM hasil_pelamar WHERE id_pelamar = '$id_pelamar';");
-		redirect_to('daftar-pelamar.php?status=sukses-hapus');
+		redirect_to('list-pelamar.php?id_lowongan=' . $id_low . '&status=sukses-hapus');
 	}
 }
 ?>

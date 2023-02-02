@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) :
 	if (empty($errors)) :
 		$simpan = mysqli_query($koneksi, "INSERT INTO pelamar (id_pelamar, nama_pelamar, no_telp, email, id_lowongan) VALUES (NULL, '$nama', '$no_telp', '$email', $id_lowongan)");
 		if ($simpan) {
-			Header('Location:daftar-pelamar.php?status=sukses-baru');
+			Header('Location:list-pelamar.php?id_lowongan=' . $id_low . '&status=sukses-baru');
 		} else {
 			$errors[] = 'Data gagal disimpan';
 		}
