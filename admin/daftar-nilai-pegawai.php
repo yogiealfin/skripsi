@@ -11,7 +11,17 @@ $periode = mysqli_query($koneksi, "SELECT * FROM periode");
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-edit"></i> Daftar Penilaian Pegawai</h1>
 </div>
+<?php
+$status = isset($_GET['status']) ? $_GET['status'] : '';
+$msg = '';
+if ($status == 'sukses') {
+	$msg = 'Data Berhasil Dikirim';
+}
 
+if ($msg) :
+	echo '<div class="alert alert-info">' . $msg . '</div>';
+endif;
+?>
 
 <div class="card shadow mb-4">
 	<!-- /.card-header -->

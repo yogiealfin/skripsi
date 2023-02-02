@@ -77,6 +77,7 @@ if (isset($_POST['edit'])) :
 		}
 	endif;
 endif;
+
 ?>
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -87,12 +88,24 @@ endif;
 				<input type="hidden" name="id_periode" value="<?= $getPeriode; ?>">
 			</div>
 			<div class="col-auto my-1">
-				<button type="submit" class="btn btn-success"><i class="fa fa-calculator"></i> Kirim Data</button>
+				<button type="submit" class="btn btn-success"><i class="fa fa-calculator"></i> Hitung</button>
 			</div>
 			<!-- <a href="perhitungan.php" class="btn btn-success"> <i class="fa fa-calculator"></i> Hitung </a> -->
 		</div>
 	</form>
 </div>
+
+<?php
+$status = isset($_GET['status']) ? $_GET['status'] : '';
+$msg = '';
+if ($status == 'sukses') {
+	$msg = 'Data Berhasil Dikirim';
+}
+
+if ($msg) :
+	echo '<div class="alert alert-info">' . $msg . '</div>';
+endif;
+?>
 
 <?php if (!empty($sts)) : ?>
 	<div class="alert alert-info">
