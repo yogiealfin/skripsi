@@ -73,7 +73,7 @@ require_once('../template/header.php');
 			</div>
 			<div class="row">
 				<div class="form-group col-md-12">
-					<label class="font-weight-bold" for="id_status">Status Pegawai</label>
+					<label class="font-weight-bold" for="id_status">Status Pegawai Yang Dinilai</label>
 					<select name="id_status" id="id_status" class="form-control">
 						<option value="">--Pilih Status--</option>
 						<?php foreach ($getStatus as $key) : ?>
