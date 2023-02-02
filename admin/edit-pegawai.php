@@ -15,6 +15,7 @@ $status = mysqli_query($koneksi, "SELECT * FROM status");
 
 if (isset($_POST['submit'])) :
 
+	$nip = $_POST['nip'];
 	$nama = $_POST['nama_pegawai'];
 	$no_telp = $_POST['no_telp'];
 	$email = $_POST['email'];
@@ -23,6 +24,9 @@ if (isset($_POST['submit'])) :
 	$id_divisi = $_POST['id_divisi'];
 
 	// Validasi
+	if (!$nip) {
+		$errors[] = 'NIP tidak boleh kosong';
+	}
 	if (!$nama) {
 		$errors[] = 'Nama tidak boleh kosong';
 	}
@@ -42,7 +46,7 @@ if (isset($_POST['submit'])) :
 	// Jika lolos validasi lakukan hal di bawah ini
 	if (empty($errors)) :
 
-		$update = mysqli_query($koneksi, "UPDATE pegawai SET nama_pegawai = '$nama', no_telp = '$no_telp', email = '$email', id_status = '$id_status', id_divisi = '$id_divisi' WHERE id_pegawai = '$id_pegawai'");
+		$update = mysqli_query($koneksi, "UPDATE pegawai SET nip= '$nip', nama_pegawai = '$nama', no_telp = '$no_telp', email = '$email', id_status = '$id_status', id_divisi = '$id_divisi' WHERE id_pegawai = '$id_pegawai'");
 		if ($update) {
 			// header("Location:list-pelamar.php?status=sukses-edit&id_lowongan=" . $id_lowongan);
 			redirect_to('list-pegawai.php?id_divisi=' . $id_divisi . '&status=sukses-edit');
@@ -110,6 +114,12 @@ require_once('../template/header.php');
 					while ($d = mysqli_fetch_assoc($data)) {
 					?>
 						<div class="card-body">
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label class="font-weight-bold" for="nama">NIP</label>
+									<input autocomplete="off" type="text" name="nip" required value="<?php echo $d['nip']; ?>" class="form-control" readonly />
+								</div>
+							</div>
 							<div class="row">
 								<div class="form-group col-md-12">
 									<label class="font-weight-bold" for="nama">Nama</label>

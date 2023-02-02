@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 27, 2023 at 08:02 PM
+-- Generation Time: Feb 02, 2023 at 05:52 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -76,16 +76,16 @@ INSERT INTO `hasil_pegawai` (`id_hasil`, `id_pegawai`, `id_periode`, `nilai`) VA
 (18, 8, 2, 81.3551),
 (19, 9, 2, 84.5368),
 (20, 10, 2, 86.5868),
-(21, 1, 1, 95.1882),
-(22, 2, 1, 84.1413),
-(23, 3, 1, 95.6299),
-(24, 4, 1, 86.6847),
-(25, 5, 1, 86.6536),
-(26, 6, 1, 85.318),
-(27, 7, 1, 90.5413),
-(28, 8, 1, 93.8921),
-(29, 9, 1, 89.2278),
-(30, 10, 1, 84.569);
+(81, 1, 1, 95.1882),
+(82, 2, 1, 84.1413),
+(83, 3, 1, 95.6299),
+(84, 4, 1, 86.6847),
+(85, 5, 1, 86.6536),
+(86, 6, 1, 85.318),
+(87, 7, 1, 90.5413),
+(88, 8, 1, 93.8921),
+(89, 9, 1, 89.2278),
+(90, 10, 1, 84.569);
 
 -- --------------------------------------------------------
 
@@ -111,14 +111,14 @@ INSERT INTO `hasil_pelamar` (`id_hasil`, `id_pelamar`, `id_lowongan`, `nilai`) V
 (199, 12, 2, 0.135723),
 (200, 13, 2, 0.169518),
 (201, 15, 2, 0.152362),
-(218, 1, 1, 0.121505),
-(219, 2, 1, 0.140209),
-(220, 3, 1, 0.105007),
-(221, 4, 1, 0.138862),
-(222, 5, 1, 0.121172),
-(223, 6, 1, 0.104719),
-(224, 7, 1, 0.129183),
-(225, 8, 1, 0.139343);
+(278, 1, 1, 0.121505),
+(279, 2, 1, 0.140209),
+(280, 3, 1, 0.105007),
+(281, 4, 1, 0.138862),
+(282, 5, 1, 0.121172),
+(283, 6, 1, 0.104719),
+(284, 7, 1, 0.129183),
+(285, 8, 1, 0.139343);
 
 -- --------------------------------------------------------
 
@@ -200,6 +200,7 @@ INSERT INTO `lowongan` (`id_lowongan`, `nama_lowongan`, `kuota`) VALUES
 
 CREATE TABLE `pegawai` (
   `id_pegawai` int(11) NOT NULL,
+  `nip` char(8) NOT NULL,
   `nama_pegawai` varchar(100) NOT NULL,
   `no_telp` varchar(13) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -212,18 +213,19 @@ CREATE TABLE `pegawai` (
 -- Dumping data for table `pegawai`
 --
 
-INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `no_telp`, `email`, `tgl_bergabung`, `id_status`, `id_divisi`) VALUES
-(1, 'Berlian Ardiansyah', '081346884191', 'berlianardi@gmail.com', '2020-10-08', 2, 7),
-(2, 'Denny Octavian', '085693500196', 'dennyoctavian@gmail.com', '2016-12-01', 2, 9),
-(3, 'Dimas Pambudi', '081277419012', 'dimaspambudi97@gmail.com', '2019-02-23', 2, 5),
-(4, 'Elizabeth Yaspis', '087851467830', 'elizayespis@gmail.com', '2019-07-22', 2, 2),
-(5, 'Fauziyah Rani', '081267098841', 'fauziyahrani@gmail.com', '2019-07-22', 2, 1),
-(6, 'Fuad Ashadi', '085723018854', 'fuadhasi@gmail.com', '2021-12-11', 2, 8),
-(7, 'Kiki Prasetya', '087834580818', 'kikipras21@gmail.com', '2017-06-01', 2, 3),
-(8, 'Muhammad Faiz', '081398619041', 'muhfaiz88@gmail.com', '2018-03-12', 2, 1),
-(9, 'Tiara Paramita', '082698019061', 'tiaraip@gmail.com', '2020-10-01', 2, 9),
-(10, 'Wahyu Santoso', '085688670184', 'wahyusan86@gmail.com', '2020-10-07', 2, 9),
-(13, 'Azkia Raihani', '087864310187', 'azkiarhni@gmail.com', '2021-12-25', 1, 1);
+INSERT INTO `pegawai` (`id_pegawai`, `nip`, `nama_pegawai`, `no_telp`, `email`, `tgl_bergabung`, `id_status`, `id_divisi`) VALUES
+(1, '', 'Berlian Ardiansyah', '081346884191', 'berlianardi@gmail.com', '2020-10-08', 2, 7),
+(2, '', 'Denny Octavian', '085693500196', 'dennyoctavian@gmail.com', '2016-12-01', 2, 9),
+(3, '', 'Dimas Pambudi', '081277419012', 'dimaspambudi97@gmail.com', '2019-02-23', 2, 5),
+(4, '', 'Elizabeth Yaspis', '087851467830', 'elizayespis@gmail.com', '2019-07-22', 2, 2),
+(5, '', 'Fauziyah Rani', '081267098841', 'fauziyahrani@gmail.com', '2019-07-22', 2, 1),
+(6, '', 'Fuad Ashadi', '085723018854', 'fuadhasi@gmail.com', '2021-12-11', 2, 8),
+(7, '', 'Kiki Prasetya', '087834580818', 'kikipras21@gmail.com', '2017-06-01', 2, 3),
+(8, '', 'Muhammad Faiz', '081398619041', 'muhfaiz88@gmail.com', '2018-03-12', 2, 1),
+(9, '', 'Tiara Paramita', '082698019061', 'tiaraip@gmail.com', '2020-10-01', 2, 9),
+(10, '', 'Wahyu Santoso', '085688670184', 'wahyusan86@gmail.com', '2020-10-07', 2, 9),
+(13, '', 'Azkia Raihani', '087864310187', 'azkiarhni@gmail.com', '2021-12-25', 1, 1),
+(14, '', 'Alfin Nurhidayat', '081377619041', 'alfinnurhidayat@gmail.com', '2021-10-22', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -571,7 +573,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `email`, `role`, `id_divisi`) VALUES
 (2, 'alfalaq', '$2y$10$OM.2hICAf5TmpbBAaoyyke4kv4DvBiIZ2ocavmWM9y9MN5xaa3dKS', 'Alfalaq', 'alfalaq@gmail.com', '1', 10),
 (4, 'hrcap', '$2y$10$fmrj5pPlKdxHviTzAc6XpeCtMXdIFrQ1KBL1drzL0zVg6WGG4ZkSi', 'Jatu Madasari', 'jtmdsr@gmail.com', '2', 7),
-(6, 'marketingcap', '$2y$10$YsoHHxxbhlQCcqm502oqt.KttmbwuPkimdB1rPUb2qaH2goB8o/76', 'Iwan Abdulrahman', 'iwanabdul@gmail.com', '2', 1);
+(6, 'marketingcap', '$2y$10$YsoHHxxbhlQCcqm502oqt.KttmbwuPkimdB1rPUb2qaH2goB8o/76', 'Iwan Abdulrahman', 'iwanabdul@gmail.com', '2', 1),
+(7, 'pmcap', '$2y$10$1kt/OhB/fK965hEEOUxwX.galoVL4v3rqbCW2Yh5BWdfkTKTAuftm', 'Tjatursari Oetoro', 'tjatursarioetoro@gmail.com', '2', 3);
 
 --
 -- Indexes for dumped tables
@@ -691,13 +694,13 @@ ALTER TABLE `divisi`
 -- AUTO_INCREMENT for table `hasil_pegawai`
 --
 ALTER TABLE `hasil_pegawai`
-  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `hasil_pelamar`
 --
 ALTER TABLE `hasil_pelamar`
-  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=226;
+  MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=286;
 
 --
 -- AUTO_INCREMENT for table `indikator`
@@ -715,25 +718,25 @@ ALTER TABLE `kriteria`
 -- AUTO_INCREMENT for table `lowongan`
 --
 ALTER TABLE `lowongan`
-  MODIFY `id_lowongan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_lowongan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `pelamar`
 --
 ALTER TABLE `pelamar`
-  MODIFY `id_pelamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_pelamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `penilaian_pegawai`
@@ -763,7 +766,7 @@ ALTER TABLE `sub_kriteria`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables

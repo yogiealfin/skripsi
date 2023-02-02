@@ -8,6 +8,7 @@ $sukses = false;
 $id_div = (isset($_GET['id_divisi']) ? $_GET['id_divisi'] : '');
 
 $nama = (isset($_POST['nama'])) ? trim($_POST['nama']) : '';
+$nip = (isset($_POST['nip'])) ? trim($_POST['nip']) : '';
 $email = (isset($_POST['email'])) ? trim($_POST['email']) : '';
 $no_telp = (isset($_POST['no_telp'])) ? trim($_POST['no_telp']) : '';
 $tgl_bergabung = (isset($_POST['tgl_bergabung'])) ? trim($_POST['tgl_bergabung']) : '';
@@ -21,6 +22,9 @@ $divisi = $_GET['id_divisi'];
 if (isset($_POST['submit'])) :
 
 	// Validasi
+	if (!$nip) {
+		$errors[] = 'NIP tidak boleh kosong';
+	}
 	if (!$nama) {
 		$errors[] = 'Nama tidak boleh kosong';
 	}
@@ -36,7 +40,7 @@ if (isset($_POST['submit'])) :
 
 	// Jika lolos validasi lakukan hal di bawah ini
 	if (empty($errors)) :
-		$simpan = mysqli_query($koneksi, "INSERT INTO pegawai (id_pegawai, nama_pegawai, no_telp, email, tgl_bergabung, id_status, id_divisi) VALUES (NULL, '$nama', '$no_telp', '$email', '$tgl_bergabung', '$id_status', '$id_divisi')");
+		$simpan = mysqli_query($koneksi, "INSERT INTO pegawai (id_pegawai, nip, nama_pegawai, no_telp, email, tgl_bergabung, id_status, id_divisi) VALUES (NULL, '$nip', '$nama', '$no_telp', '$email', '$tgl_bergabung', '$id_status', '$id_divisi')");
 		if ($simpan) {
 			Header('Location:list-pegawai.php?status=sukses-baru&id_divisi=' . $divisi);
 		} else {
@@ -77,6 +81,12 @@ require_once('../template/header.php');
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold">Nama</label>
 					<input autocomplete="off" type="text" name="nama" required class="form-control" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="font-weight-bold">NIP</label>
+					<input autocomplete="off" type="text" name="nip" pattern="[0-9]+" minlength="8" maxlength="8" required class="form-control" />
 				</div>
 			</div>
 			<div class="row">

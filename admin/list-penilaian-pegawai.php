@@ -95,18 +95,6 @@ endif;
 	</form>
 </div>
 
-<?php
-$status = isset($_GET['status']) ? $_GET['status'] : '';
-$msg = '';
-if ($status == 'sukses') {
-	$msg = 'Data Berhasil Dikirim';
-}
-
-if ($msg) :
-	echo '<div class="alert alert-info">' . $msg . '</div>';
-endif;
-?>
-
 <?php if (!empty($sts)) : ?>
 	<div class="alert alert-info">
 		<?php foreach ($sts as $st) : ?>

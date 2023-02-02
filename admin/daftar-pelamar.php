@@ -61,7 +61,7 @@ endif;
 							<td>
 								<form action="list-pelamar.php" method="GET">
 									<input type="hidden" name="id_lowongan" value="<?= $data['id_lowongan']; ?>">
-									<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-eye"></i> Lihat</a></button>
+									<button type="submit" class="btn btn-success btn-sm"><i class="fa fa-eye"></i> Lihat Pelamar</a></button>
 								</form>
 							</td>
 						</tr>
