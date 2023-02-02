@@ -57,6 +57,7 @@ endif;
 				<thead class="bg-primary text-white">
 					<tr align="center">
 						<th width="5%">No</th>
+						<th>NIP</th>
 						<th>Nama</th>
 						<th>Status</th>
 						<th width="15%">Aksi</th>
@@ -71,6 +72,7 @@ endif;
 					?>
 						<tr align="center">
 							<td><?php echo $no; ?></td>
+							<td><?php echo $data['nip']; ?></td>
 							<td align="left"><?php echo $data['nama_pegawai']; ?></td>
 							<td><?= $data['status']; ?></td>
 							<td>

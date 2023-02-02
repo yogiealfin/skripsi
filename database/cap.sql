@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 02, 2023 at 05:52 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Host: 127.0.0.1
+-- Generation Time: Feb 02, 2023 at 06:28 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `divisi` (
   `id_divisi` int(11) NOT NULL,
   `nama_divisi` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `divisi`
@@ -42,7 +42,7 @@ INSERT INTO `divisi` (`id_divisi`, `nama_divisi`) VALUES
 (3, 'Project Management'),
 (4, 'Infrastucture and Operation'),
 (5, 'Product Inovation'),
-(6, 'Community Development'),
+(6, 'Business Development'),
 (7, 'People Relation and Development'),
 (8, 'General Affair'),
 (9, 'Finance'),
@@ -59,7 +59,7 @@ CREATE TABLE `hasil_pegawai` (
   `id_pegawai` int(11) NOT NULL,
   `id_periode` int(11) NOT NULL,
   `nilai` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `hasil_pegawai`
@@ -98,7 +98,7 @@ CREATE TABLE `hasil_pelamar` (
   `id_pelamar` int(11) NOT NULL,
   `id_lowongan` int(11) NOT NULL,
   `nilai` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `hasil_pelamar`
@@ -133,7 +133,7 @@ CREATE TABLE `indikator` (
   `type` enum('Benefit','Cost') NOT NULL,
   `bobot` int(3) NOT NULL,
   `ada_pilihan` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `indikator`
@@ -159,7 +159,7 @@ CREATE TABLE `kriteria` (
   `type` enum('Benefit','Cost') NOT NULL,
   `bobot` int(3) NOT NULL,
   `ada_pilihan` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `kriteria`
@@ -182,7 +182,7 @@ CREATE TABLE `lowongan` (
   `id_lowongan` int(11) NOT NULL,
   `nama_lowongan` varchar(50) NOT NULL,
   `kuota` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `lowongan`
@@ -207,25 +207,25 @@ CREATE TABLE `pegawai` (
   `tgl_bergabung` date NOT NULL,
   `id_status` int(11) NOT NULL,
   `id_divisi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nip`, `nama_pegawai`, `no_telp`, `email`, `tgl_bergabung`, `id_status`, `id_divisi`) VALUES
-(1, '', 'Berlian Ardiansyah', '081346884191', 'berlianardi@gmail.com', '2020-10-08', 2, 7),
-(2, '', 'Denny Octavian', '085693500196', 'dennyoctavian@gmail.com', '2016-12-01', 2, 9),
-(3, '', 'Dimas Pambudi', '081277419012', 'dimaspambudi97@gmail.com', '2019-02-23', 2, 5),
-(4, '', 'Elizabeth Yaspis', '087851467830', 'elizayespis@gmail.com', '2019-07-22', 2, 2),
-(5, '', 'Fauziyah Rani', '081267098841', 'fauziyahrani@gmail.com', '2019-07-22', 2, 1),
-(6, '', 'Fuad Ashadi', '085723018854', 'fuadhasi@gmail.com', '2021-12-11', 2, 8),
-(7, '', 'Kiki Prasetya', '087834580818', 'kikipras21@gmail.com', '2017-06-01', 2, 3),
-(8, '', 'Muhammad Faiz', '081398619041', 'muhfaiz88@gmail.com', '2018-03-12', 2, 1),
-(9, '', 'Tiara Paramita', '082698019061', 'tiaraip@gmail.com', '2020-10-01', 2, 9),
-(10, '', 'Wahyu Santoso', '085688670184', 'wahyusan86@gmail.com', '2020-10-07', 2, 9),
-(13, '', 'Azkia Raihani', '087864310187', 'azkiarhni@gmail.com', '2021-12-25', 1, 1),
-(14, '', 'Alfin Nurhidayat', '081377619041', 'alfinnurhidayat@gmail.com', '2021-10-22', 1, 3);
+(1, '40120109', 'Berlian Ardiansyah', '081346884191', 'berlianardi@gmail.com', '2020-10-08', 2, 7),
+(2, '50116055', 'Denny Octavian', '085693500196', 'dennyoctavian@gmail.com', '2016-12-01', 2, 9),
+(3, '30219075', 'Dimas Pambudi', '081277419012', 'dimaspambudi97@gmail.com', '2019-02-23', 2, 5),
+(4, '10119087', 'Elizabeth Yaspis', '087851467830', 'elizayespis@gmail.com', '2019-07-22', 2, 2),
+(5, '10219079', 'Fauziyah Rani', '081267098841', 'fauziyahrani@gmail.com', '2019-07-22', 2, 1),
+(6, '40221119', 'Fuad Ashadi', '085723018854', 'fuadhasi@gmail.com', '2021-12-11', 2, 8),
+(7, '20117059', 'Kiki Prasetya', '087834580818', 'kikipras21@gmail.com', '2017-06-01', 2, 3),
+(8, '10218063', 'Muhammad Faiz', '081398619041', 'muhfaiz88@gmail.com', '2018-03-12', 2, 1),
+(9, '50120100', 'Tiara Paramita', '082698019061', 'tiaraip@gmail.com', '2020-10-01', 2, 9),
+(10, '50120108', 'Wahyu Santoso', '085688670184', 'wahyusan86@gmail.com', '2020-10-07', 2, 9),
+(13, '10121125', 'Azkia Raihani', '087864310187', 'azkiarhni@gmail.com', '2021-12-25', 1, 2),
+(14, '20221117', 'Alfin Nurhidayat', '081377619041', 'alfinnurhidayat@gmail.com', '2021-10-22', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -239,7 +239,7 @@ CREATE TABLE `pelamar` (
   `no_telp` varchar(13) NOT NULL,
   `email` varchar(100) NOT NULL,
   `id_lowongan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pelamar`
@@ -273,7 +273,7 @@ CREATE TABLE `penilaian` (
   `id_kriteria` int(11) NOT NULL,
   `id_lowongan` int(11) NOT NULL,
   `nilai` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `penilaian`
@@ -363,7 +363,7 @@ CREATE TABLE `penilaian_pegawai` (
   `id_indikator` int(11) NOT NULL,
   `id_periode` int(11) NOT NULL,
   `nilai` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `penilaian_pegawai`
@@ -481,7 +481,7 @@ CREATE TABLE `periode` (
   `id_periode` int(11) NOT NULL,
   `nama_periode` varchar(100) NOT NULL,
   `id_status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `periode`
@@ -501,7 +501,7 @@ INSERT INTO `periode` (`id_periode`, `nama_periode`, `id_status`) VALUES
 CREATE TABLE `status` (
   `id_status` int(11) NOT NULL,
   `status` enum('Kontrak','Tetap') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `status`
@@ -522,7 +522,7 @@ CREATE TABLE `sub_kriteria` (
   `id_kriteria` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `nilai` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sub_kriteria`
@@ -564,7 +564,7 @@ CREATE TABLE `user` (
   `email` varchar(50) NOT NULL,
   `role` char(1) NOT NULL,
   `id_divisi` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
@@ -574,7 +574,13 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `email`, `role`, 
 (2, 'alfalaq', '$2y$10$OM.2hICAf5TmpbBAaoyyke4kv4DvBiIZ2ocavmWM9y9MN5xaa3dKS', 'Alfalaq', 'alfalaq@gmail.com', '1', 10),
 (4, 'hrcap', '$2y$10$fmrj5pPlKdxHviTzAc6XpeCtMXdIFrQ1KBL1drzL0zVg6WGG4ZkSi', 'Jatu Madasari', 'jtmdsr@gmail.com', '2', 7),
 (6, 'marketingcap', '$2y$10$YsoHHxxbhlQCcqm502oqt.KttmbwuPkimdB1rPUb2qaH2goB8o/76', 'Iwan Abdulrahman', 'iwanabdul@gmail.com', '2', 1),
-(7, 'pmcap', '$2y$10$1kt/OhB/fK965hEEOUxwX.galoVL4v3rqbCW2Yh5BWdfkTKTAuftm', 'Tjatursari Oetoro', 'tjatursarioetoro@gmail.com', '2', 3);
+(7, 'pmcap', '$2y$10$1kt/OhB/fK965hEEOUxwX.galoVL4v3rqbCW2Yh5BWdfkTKTAuftm', 'Tjatursari Oetoro', 'tjatursarioetoro@gmail.com', '2', 3),
+(8, 'salescap', '$2y$10$y8zDkRNy2fuJ9fY5saP/deXCqRsx9pHPO/sR5lonZFj4OeqLgTAIC', 'Theresia Suzana Ramschie', 'theresiasuzana@gmail.com', '2', 2),
+(9, 'iocap', '$2y$10$VwIVtfJcI/TTJsvv.YXFbOuCtw9tOLQYjNdQDC5w/go8shv9DC8xW', 'Satria Aji Julianto', 'satriaaji22@gmail.com', '2', 4),
+(10, 'picap', '$2y$10$TerPDYZxqtLGVUxU9VkE3OVOx7dsyiHlO/A4kAh9Kom.JjZvXDMMK', 'Debora Ayu', 'deborayu@gmail.com', '2', 5),
+(11, 'busdevcap', '$2y$10$PMufkdyh72.bDmpMsctvnOU7eLEGPx.CbNaIMUk9./H4eFCN/vfqy', 'Onma Pasti', 'onmapas@gmail.com', '2', 6),
+(12, 'gacap', '$2y$10$QDLqn4QgYPmWrooIpzA2JOxcmkZDjRgumMiDPUd7thRMwRhhDX6am', 'Fadel Nur Akhmad', 'fadelna88@gmail.com', '2', 8),
+(13, 'fincap', '$2y$10$h34tp9iNQx67m6PJ.sTEoOfxuCrsd2KB.ZwRwugdOFSnp.yZFMdgO', 'Ahmad Nurudin', 'ahmadnur@gmail.com', '2', 9);
 
 --
 -- Indexes for dumped tables
@@ -766,7 +772,7 @@ ALTER TABLE `sub_kriteria`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

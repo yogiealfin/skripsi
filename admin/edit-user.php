@@ -136,7 +136,7 @@ require_once('../template/header.php');
 														} ?>>Administrator</option>
 									<option value="2" <?php if ($d['role'] == 2) {
 															echo "selected";
-														} ?>>User</option>
+														} ?>>Kadiv</option>
 								</select>
 							</div>
 						</div>
