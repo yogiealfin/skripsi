@@ -40,7 +40,7 @@ if ($user_role == 'admin') {
 
 	<div class="d-sm-flex align-items-center justify-content-between mb-4">
 		<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-calculator"></i> Data Perhitungan <?= $nama_lowongan['nama_lowongan']; ?></h1>
-		<a href="daftar-hasil-pelamar.php" class="btn btn-success"> <i class="fa fa-file"></i> Hasil </a>
+		<a href="hasil-pelamar.php?id_lowongan=<?= $lowongan ?>" class="btn btn-success"> <i class="fa fa-file"></i> Hasil </a>
 	</div>
 
 	<div class="card shadow mb-4">
