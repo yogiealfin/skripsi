@@ -80,9 +80,6 @@ endif;
                         <p class="pt-4">
                             Selamat datang di Sistem Informasi Kepegawaian PT. Cipta Adhi Potensia Silahkan lakukan login terlebih dahulu untuk masuk ke dashboard.
                         </p>
-                        <!-- <p>
-                                Metode Weighted Product (WP) adalah salah satu metode yang digunakan untuk penyelesaian sistem pengambilan keputusan dengan mempertimbangkan kriteria dan bobot. Metode WP merupakan salah satu dari beberapa metode Multi Atribute Decision Making (MADM) dimana pengambilan keputusan didasarkan pada beberapa atribut.
-                            </p> -->
                     </div>
                 </div>
             </div>

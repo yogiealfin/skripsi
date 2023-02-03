@@ -25,7 +25,7 @@ if (!$id_lowongan) {
 ?>
 
 <?php
-$page = "Alternatif";
+$page = "Pelamar";
 require_once('../template/header.php');
 ?>
 	<?php if ($ada_error) : ?>
