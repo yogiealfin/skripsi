@@ -46,7 +46,7 @@ require_once('../template/header.php');
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Data Periode Penilaian</h1>
 
-	<a href="list-lowongan.php" class="btn btn-secondary btn-icon-split"><span class="icon text-white-50"><i class="fas fa-arrow-left"></i></span>
+	<a href="list-periode-penilaian.php" class="btn btn-secondary btn-icon-split"><span class="icon text-white-50"><i class="fas fa-arrow-left"></i></span>
 		<span class="text">Kembali</span>
 	</a>
 </div>
@@ -73,7 +73,7 @@ require_once('../template/header.php');
 			</div>
 			<div class="row">
 				<div class="form-group col-md-12">
-					<label class="font-weight-bold" for="id_status">Status Pegawai</label>
+					<label class="font-weight-bold" for="id_status">Status Pegawai Yang Dinilai</label>
 					<select name="id_status" id="id_status" class="form-control">
 						<option value="">--Pilih Status--</option>
 						<?php foreach ($getStatus as $key) : ?>

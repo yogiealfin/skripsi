@@ -29,7 +29,8 @@ if ($user_role == 'admin' || $user_role == 'kadiv') {
 					<thead class="bg-primary text-white">
 						<tr align="center">
 							<th width="5%">Rank</th>
-							<th>Nama Pelamar</th>
+							<th>NIP</th>
+							<th>Nama Pegawai</th>
 							<th>Divisi</th>
 							<th>Nilai</th>
 							<th>Keputusan</th>
@@ -60,6 +61,7 @@ if ($user_role == 'admin' || $user_role == 'kadiv') {
 						?>
 							<tr align="center">
 								<td><?= $no; ?></td>
+								<td><?= $data['nip'] ?></td>
 								<td align="left"><?= $data['nama_pegawai'] ?></td>
 								<td><?= $data['nama_divisi'] ?></td>
 								<td><?= $data['nilai'] ?></td>

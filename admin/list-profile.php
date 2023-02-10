@@ -97,7 +97,7 @@ if ($user_role == 'admin' || $user_role == 'kadiv') {
 							<div class="row">
 								<div class="form-group col-md-6">
 									<label class="font-weight-bold">Username</label>
-									<input autocomplete="off" type="text" readonly required value="<?php echo $d['username']; ?>" class="form-control" />
+									<input autocomplete="off" type="text" required value="<?php echo $d['username']; ?>" class="form-control" />
 								</div>
 
 								<div class="form-group col-md-6">

@@ -61,7 +61,7 @@ endif;
 							<td align="left"><?php echo $data['nama_periode']; ?></td>
 							<td>
 								<div class="btn-group" role="group">
-									<a data-toggle="tooltip" data-placement="bottom" title="Lihat Data" href="list-penilaian-pegawai.php?id=<?php echo $data['id_periode']; ?>" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>
+									<a data-toggle="tooltip" data-placement="bottom" title="Edit Data" href="edit-periode.php?id_periode=<?php echo $data['id_periode']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
 									<!-- <a data-toggle="tooltip" data-placement="bottom" title="Hapus Data" href="hapus-lowongan.php?id=<?php echo $data['id_lowongan']; ?>" onclick="return confirm ('Apakah anda yakin untuk meghapus data ini')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> -->
 								</div>
 							</td>

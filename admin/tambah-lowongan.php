@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) :
 
 	// Validasi
 	if (!$nama_lowongan) {
-		$errors[] = 'Nama tidak boleh kosong';
+		$errors[] = 'Nama Lowongan tidak boleh kosong';
 	}
 	if (!$kuota) {
 		$errors[] = 'Kuota tidak boleh kosong';
