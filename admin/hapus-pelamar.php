@@ -14,9 +14,17 @@ if (!$id_pelamar) {
 	$query = mysqli_query($koneksi, "SELECT * FROM pelamar WHERE id_pelamar = '$id_pelamar'");
 	$cek = mysqli_num_rows($query);
 
+
 	if ($cek <= 0) {
 		$ada_error = 'Maaf, data tidak dapat diproses.';
 	} else {
+		$res = mysqli_query($koneksi, "SELECT * FROM pelamar WHERE id_pelamar = '$id_pelamar'");
+		$file = mysqli_fetch_assoc($res);
+		$fileName = $file['dokumen'];
+		$location = "../pelamar/dokumen/$fileName";
+		if (file_exists($location)) {
+			unlink('../pelamar/dokumen/' . $fileName);
+		}
 		mysqli_query($koneksi, "DELETE FROM pelamar WHERE id_pelamar = '$id_pelamar';");
 		mysqli_query($koneksi, "DELETE FROM penilaian WHERE id_pelamar = '$id_pelamar';");
 		mysqli_query($koneksi, "DELETE FROM hasil_pelamar WHERE id_pelamar = '$id_pelamar';");

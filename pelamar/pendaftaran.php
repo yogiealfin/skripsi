@@ -4,50 +4,51 @@
 $errors = array();
 $sukses = false;
 $id_low = (isset($_GET['id_lowongan']) ? $_GET['id_lowongan'] : '');
-
-$nama = (isset($_POST['nama'])) ? trim($_POST['nama']) : '';
-$email = (isset($_POST['email'])) ? trim($_POST['email']) : '';
-$no_telp = (isset($_POST['no_telp'])) ? trim($_POST['no_telp']) : '';
-$no_ktp = (isset($_POST['no_ktp'])) ? trim($_POST['no_ktp']) : '';
-$tgl_lahir = (isset($_POST['tgl_lahir'])) ? trim($_POST['tgl_lahir']) : '';
-$pendidikan = (isset($_POST['pendidikan'])) ? trim($_POST['pendidikan']) : '';
-$id_lowongan = (isset($_POST['id_lowongan']) ? trim($_POST['id_lowongan']) : '');
 $lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
 $getLowongan = $_GET['id_lowongan'];
 
-if (isset($_POST['submit'])) :
+if (isset($_POST["submit"])) {
+    // Cek adakah data berhasil ditambahkan atau tidak
+    if (tambahPelamar($_POST) > 0) {
+    }
+}
+// if (isset($_POST['submit'])) :
 
-    // Validasi
-    if (!$nama) {
-        $errors[] = 'Nama tidak boleh kosong';
-    }
-    if (!$no_ktp) {
-        $errors[] = 'Nomor KTP tidak boleh kosong';
-    }
-    if (!$email) {
-        $errors[] = 'Email tidak boleh kosong';
-    }
-    if (!$no_telp) {
-        $errors[] = 'Nomor telepon tidak boleh kosong';
-    }
-    if (!$tgl_lahir) {
-        $errors[] = 'Tanggal Lahir tidak boleh kosong';
-    }
-    if (!$pendidikan) {
-        $errors[] = 'Pendidikan terakhir tidak boleh kosong';
-    }
+//     // Validasi
+//     if (!$nama) {
+//         $errors[] = 'Nama tidak boleh kosong';
+//     }
+//     if (!$no_ktp) {
+//         $errors[] = 'Nomor KTP tidak boleh kosong';
+//     }
+//     if (!$email) {
+//         $errors[] = 'Email tidak boleh kosong';
+//     }
+//     if (!$no_telp) {
+//         $errors[] = 'Nomor telepon tidak boleh kosong';
+//     }
+//     if (!$tgl_lahir) {
+//         $errors[] = 'Tanggal Lahir tidak boleh kosong';
+//     }
+//     if (!$pendidikan) {
+//         $errors[] = 'Pendidikan terakhir tidak boleh kosong';
+//     }
+//     if (!$dokumen) {
+//         $errors[] = 'Dokumen tidak boleh kosong';
+//     }
 
-    // Jika lolos validasi lakukan hal di bawah ini
-    if (empty($errors)) :
-        $simpan = mysqli_query($koneksi, "INSERT INTO pelamar (id_pelamar, nama_pelamar, no_ktp, no_telp, email, tgl_lahir, pendidikan, id_lowongan) VALUES (NULL, '$nama', '$no_ktp', '$no_telp', '$email', '$tgl_lahir', '$pendidikan', $id_lowongan)");
-        if ($simpan) {
-            Header('Location:lowongan.php?status=sukses-baru');
-        } else {
-            $errors[] = 'Pendaftaran gagal!';
-        }
-    endif;
+//     // Jika lolos validasi lakukan hal di bawah ini
+//     if (empty($errors)) :
+//         $simpan = mysqli_query($koneksi, "INSERT INTO pelamar (id_pelamar, nama_pelamar, no_ktp, no_telp, email, tgl_lahir, pendidikan, dokumen, id_lowongan) VALUES (NULL, '$nama', '$no_ktp', '$no_telp', '$email', '$tgl_lahir', '$pendidikan', '$dokumen', $id_lowongan)");
+//         if ($simpan) {
+//             Header('Location:lowongan.php?status=sukses-baru');
+//         } else {
+//             $errors[] = 'Pendaftaran gagal!';
+//         }
+//     endif;
 
-endif;
+// endif;
+
 ?>
 
 <!DOCTYPE html>
@@ -82,14 +83,23 @@ endif;
     <div class="container">
         <!-- Outer Row -->
         <!-- <h1 class="h3 mb-4 text-gray-800 mt-4"><i class="fas fa-fw fa-users"></i> Form Pendaftaran</h1> -->
-        <?php if (!empty($errors)) : ?>
-            <div class="alert alert-danger">
-                <?php foreach ($errors as $error) : ?>
-                    <?php echo $error; ?>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
-        <form action="" method="post">
+        <?php
+        $status = isset($_GET['status']) ? $_GET['status'] : '';
+        $msg = '';
+        switch ($status):
+            case '1':
+                $msg = 'Data gagal dikirim, ekstensi file harus pdf!';
+                break;
+            case '2':
+                $msg = 'Data gagal dikirim, ukuran file maks 2MB';
+                break;
+        endswitch;
+
+        if ($msg) :
+            echo '<div class="alert alert-danger mt-2">' . $msg . '</div>';
+        endif;
+        ?>
+        <form action="" method="post" enctype="multipart/form-data">
             <div class="card shadow mb-4 mt-4">
                 <div class="card-header py-3">
                     <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-fw fa-users"></i> Form Pendaftaran</h4>
@@ -98,7 +108,7 @@ endif;
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="font-weight-bold">Nama</label>
-                            <input autocomplete="off" type="text" name="nama" required value="<?php echo $nama; ?>" class="form-control" />
+                            <input autocomplete="off" type="text" name="nama" required class="form-control" />
                         </div>
                     </div>
                     <div class="row">
@@ -135,6 +145,12 @@ endif;
                                 <option value="S1">S1</option>
                                 <option value="S2">S2</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="font-weight-bold">CV</label>
+                            <input autocomplete="off" type="file" name="dokumen" required class="form-control-file" id="dokumen" />
                         </div>
                     </div>
                     <input type="hidden" name="id_lowongan" value="<?= $getLowongan; ?>">
