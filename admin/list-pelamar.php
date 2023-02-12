@@ -17,9 +17,6 @@ $lq = mysqli_fetch_assoc($glq);
 			<div class="col-auto my-1">
 				<input type="hidden" name="id_lowongan" value="<?= $lowongan; ?>">
 			</div>
-			<div class="col-auto my-1">
-				<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Pelamar</button>
-			</div>
 			<!-- <a href="perhitungan.php" class="btn btn-success"> <i class="fa fa-calculator"></i> Hitung </a> -->
 		</div>
 </div>
@@ -58,7 +55,11 @@ endif;
 					<tr align="center">
 						<th width="5%">No</th>
 						<th>Nama</th>
-						<th>Lowongan</th>
+						<th>No Telp</th>
+						<th>Email</th>
+						<th>Umur</th>
+						<th>Pendidikan</th>
+						<th>Dokumen</th>
 						<th width="15%">Aksi</th>
 					</tr>
 				</thead>
@@ -72,10 +73,17 @@ endif;
 						<tr align="center">
 							<td><?php echo $no; ?></td>
 							<td align="left"><?php echo $data['nama_pelamar']; ?></td>
-							<td><?= $data['nama_lowongan']; ?></td>
+							<td><?= $data['no_telp']; ?></td>
+							<td><?= $data['email']; ?></td>
+							<?php
+							$today = date('Y-m-d');
+							$umur = date_diff(date_create($data['tgl_lahir']), date_create($today));
+							?>
+							<td><?= $umur->format('%y') ?></td>
+							<td><?= $data['pendidikan']; ?></td>
+							<td><a href="../pelamar/dokumen/<?= $data['dokumen']; ?>"><button class="btn btn-success btn-sm"><i class="fa fa-solid fa-file"></i> Dokumen</button></a></td>
 							<td>
 								<div class="btn-group" role="group">
-									<a data-toggle="tooltip" data-placement="bottom" title="Edit Data" href="edit-pelamar.php?id=<?php echo $data['id_pelamar']; ?>&id_lowongan=<?= $data['id_lowongan'] ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
 									<a data-toggle="tooltip" data-placement="bottom" title="Hapus Data" href="hapus-pelamar.php?id=<?php echo $data['id_pelamar']; ?>&id_lowongan=<?= $data['id_lowongan'] ?>" onclick="return confirm ('Apakah anda yakin untuk meghapus data ini')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
 								</div>
 							</td>

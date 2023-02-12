@@ -149,7 +149,7 @@ if (isset($_POST["submit"])) {
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label class="font-weight-bold">CV</label>
+                            <label class="font-weight-bold">CV (pdf, maks 2MB)</label>
                             <input autocomplete="off" type="file" name="dokumen" required class="form-control-file" id="dokumen" />
                         </div>
                     </div>
