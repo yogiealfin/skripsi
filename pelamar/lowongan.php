@@ -30,7 +30,7 @@ $lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
 <body class="bg-light">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary pb-3 pt-3 font-weight-bold">
 		<div class="container">
-			<a class="navbar-brand text-white" style="font-weight: 900;" href="login.php"> <i class="fa fa-database mr-2 rotate-n-15"></i> Sistem Informasi Kepeawaian PT. Cipta Adhi Potensia</a>
+			<span class="navbar-brand text-white" style="font-weight: 900;"> <i class="fa fa-database mr-2 rotate-n-15"></i> Sistem Informasi Kepeawaian PT. Cipta Adhi Potensia</span>
 		</div>
 	</nav>
 
@@ -39,7 +39,21 @@ $lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
 		<!-- <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
 			<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-edit"></i> Daftar Lowongan</h1>
 		</div> -->
-		<div class="card shadow mb-4 mt-4">
+		<?php
+		$status = isset($_GET['status']) ? $_GET['status'] : '';
+		$get_lowongan = isset($_GET['id_lowongan']) ? $_GET['id_lowongan'] : '';
+		$msg = '';
+		switch ($status):
+			case 'sukses-baru':
+				$msg = 'Pendaftaran berhasil dilakukan!';
+				break;
+		endswitch;
+
+		if ($msg) :
+			echo '<div class="alert alert-info mt-2">' . $msg . '</div>';
+		endif;
+		?>
+		<div class="card shadow mb-4 mt-3">
 			<!-- /.card-header -->
 			<div class="card-header py-3">
 				<h4 class="m-0 font-weight-bold text-primary"><i class="fa fa-table"></i> Daftar Lowongan </h4>
