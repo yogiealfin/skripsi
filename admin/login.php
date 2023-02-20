@@ -107,6 +107,9 @@ endif;
                                         <div class="form-group">
                                             <input required autocomplete="off" type="password" class="form-control form-control-user" id="exampleInputPassword" name="password" placeholder="Password" />
                                         </div>
+                                        <div class="form-group ml-2">
+                                            <a href="lupa-password.php">Lupa Password?</a>
+                                        </div>
                                         <button name="submit" type="submit" class="btn btn-primary btn-user btn-block"><i class="fas fa-fw fa-sign-in-alt mr-1"></i> Masuk</button>
                                     </form>
                                 </div>

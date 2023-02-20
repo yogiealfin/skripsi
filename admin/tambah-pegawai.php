@@ -3,9 +3,16 @@
 
 <?php
 $today = date('Y-m-d');
+$year = date('y');
 $errors = array();
 $sukses = false;
 $id_div = (isset($_GET['id_divisi']) ? $_GET['id_divisi'] : '');
+$id_pelamar = (isset($_GET['id_pelamar']) ? $_GET['id_pelamar'] : '');
+
+$pelamar = mysqli_query($koneksi, "SELECT * FROM pelamar WHERE id_pelamar = '$id_pelamar'");
+$data = mysqli_fetch_assoc($pelamar);
+$divisi = mysqli_query($koneksi, "SELECT * FROM divisi where id_divisi='$id_div'");
+$data2 = mysqli_fetch_assoc($divisi);
 
 $nama = (isset($_POST['nama'])) ? trim($_POST['nama']) : '';
 $nip = (isset($_POST['nip'])) ? trim($_POST['nip']) : '';
@@ -16,8 +23,8 @@ $id_status = (isset($_POST['id_status'])) ? trim($_POST['id_status']) : '';
 $id_divisi = (isset($_POST['id_divisi']) ? trim($_POST['id_divisi']) : '');
 // $getStatus = mysqli_query($koneksi, "SELECT * FROM status");
 // $status = mysqli_fetch_assoc($getStatus);
-$getDivisi = mysqli_query($koneksi, "SELECT * FROM divisi");
-$divisi = $_GET['id_divisi'];
+// $getDivisi = mysqli_query($koneksi, "SELECT * FROM divisi");
+// // $divisi = $_GET['id_divisi'];
 
 if (isset($_POST['submit'])) :
 
@@ -42,7 +49,7 @@ if (isset($_POST['submit'])) :
 	if (empty($errors)) :
 		$simpan = mysqli_query($koneksi, "INSERT INTO pegawai (id_pegawai, nip, nama_pegawai, no_telp, email, tgl_bergabung, id_status, id_divisi) VALUES (NULL, '$nip', '$nama', '$no_telp', '$email', '$tgl_bergabung', '$id_status', '$id_divisi')");
 		if ($simpan) {
-			Header('Location:list-pegawai.php?status=sukses-baru&id_divisi=' . $divisi);
+			Header('Location:list-pegawai.php?status=sukses-baru&id_divisi=' . $id_div);
 		} else {
 			$errors[] = 'Data gagal disimpan';
 		}
@@ -80,25 +87,31 @@ require_once('../template/header.php');
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold">Nama</label>
-					<input autocomplete="off" type="text" name="nama" required class="form-control" />
+					<input autocomplete="off" type="text" name="nama" required class="form-control" value="<?= $data['nama_pelamar'] ?>" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold">NIP</label>
-					<input autocomplete="off" type="text" name="nip" pattern="[0-9]+" minlength="8" maxlength="8" required class="form-control" />
+					<?php if (strlen($data['id_pelamar']) == 3) : ?>
+						<input autocomplete="off" type="text" name="nip" pattern="[0-9]+" minlength="8" maxlength="8" required class="form-control" value="<?= $data2['kode'] . $year . $data['id_pelamar'] ?>" />
+					<?php elseif (strlen($data['id_pelamar']) == 2) : ?>
+						<input autocomplete="off" type="text" name="nip" pattern="[0-9]+" minlength="8" maxlength="8" required class="form-control" value="<?= $data2['kode'] . $year . '0' . $data['id_pelamar'] ?>" />
+					<?php else : ?>
+						<input autocomplete="off" type="text" name="nip" pattern="[0-9]+" minlength="8" maxlength="8" required class="form-control" value="<?= $data2['kode'] . $year . '00' . $data['id_pelamar'] ?>" />
+					<?php endif; ?>
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold">No Telpon</label>
-					<input autocomplete="off" type="tel" name="no_telp" pattern="[0-9]+" minlength="11" maxlength="13" required class="form-control" />
+					<input autocomplete="off" type="tel" name="no_telp" pattern="[0-9]+" minlength="11" maxlength="13" required class="form-control" value="<?= $data['no_telp'] ?>" />
 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold" for="email">Email</label>
-					<input autocomplete="off" type="email" name="email" required class="form-control" id="email" />
+					<input autocomplete="off" type="email" name="email" required class="form-control" id="email" value="<?= $data['email'] ?>" />
 				</div>
 			</div>
 			<div class="row">

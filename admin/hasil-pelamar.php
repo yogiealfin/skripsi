@@ -32,11 +32,12 @@ if ($user_role == 'admin' || $user_role == 'user') {
 							<th>Nama Pelamar</th>
 							<th>Nilai (V)</th>
 							<th>Keputusan</th>
+							<th>Aksi</th>
 					</thead>
 					<tbody>
 						<?php
 						$no = 0;
-						$query = mysqli_query($koneksi, "SELECT * FROM hasil_pelamar JOIN pelamar ON hasil_pelamar.id_pelamar=pelamar.id_pelamar WHERE hasil_pelamar.id_lowongan='$lowongan' ORDER BY hasil_pelamar.nilai DESC");
+						$query = mysqli_query($koneksi, "SELECT * FROM hasil_pelamar JOIN pelamar ON hasil_pelamar.id_pelamar=pelamar.id_pelamar JOIN lowongan ON pelamar.id_lowongan = lowongan.id_lowongan WHERE hasil_pelamar.id_lowongan='$lowongan' ORDER BY hasil_pelamar.nilai DESC");
 						while ($data = mysqli_fetch_array($query)) :
 							$no++;
 							$ambilKuota = mysqli_query($koneksi, "SELECT * FROM pelamar INNER JOIN lowongan on pelamar.id_lowongan = lowongan.id_lowongan WHERE pelamar.id_lowongan = '$lowongan'");
@@ -52,6 +53,27 @@ if ($user_role == 'admin' || $user_role == 'user') {
 								<td align="left"><?= $data['nama_pelamar'] ?></td>
 								<td><?= $data['nilai'] ?></td>
 								<td><?= $keputusan; ?></td>
+								<?php if ($keputusan == 'Diterima') : ?>
+									<td>
+										<form action="tambah-pegawai.php" method="GET">
+											<input type="hidden" name="id_divisi" value="<?= $data['id_divisi']; ?>">
+											<input type="hidden" name="id_pelamar" value="<?= $data['id_pelamar'] ?>">
+											<?php
+											$q = mysqli_query($koneksi, "SELECT * FROM pegawai WHERE nama_pegawai='$data[nama_pelamar]'");
+											$cek_tombol = mysqli_num_rows($q);
+											?>
+											<?php if ($cek_tombol == 0) : ?>
+												<button type="submit" class="btn btn-warning btn-sm"><i class="fa fa-plus"></i> Tambah Pelamar</button>
+											<?php else : ?>
+												<div class="btn btn-success btn-sm"><i class="fa fa-check"></i> Data sudah ditambah</div>
+											<?php endif; ?>
+										</form>
+									</td>
+								<?php else : ?>
+									<td>
+
+									</td>
+								<?php endif; ?>
 							</tr>
 						<?php
 						endwhile;

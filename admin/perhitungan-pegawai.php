@@ -257,7 +257,8 @@ if ($user_role == 'kadiv') {
 								</td>
 								<td>
 									<?php
-									echo round($nilai_v, 2, PHP_ROUND_HALF_UP);
+									$nilai_v = round($nilai_v, 2, PHP_ROUND_HALF_UP);
+									echo $nilai_v;
 									?>
 								</td>
 							</tr>

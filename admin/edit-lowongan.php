@@ -12,6 +12,7 @@ $result = '';
 $id_lowongan = (isset($_GET['id'])) ? trim($_GET['id']) : '';
 // $lowongan = mysqli_query($koneksi, "SELECT * FROM lowongan");
 
+$getDivisi = mysqli_query($koneksi, "SELECT * FROM divisi");
 if (isset($_POST['submit'])) :
 
 	$nama_lowongan = $_POST['nama_lowongan'];
@@ -81,7 +82,7 @@ require_once('../template/header.php');
 				</div>
 				<?php
 			} else {
-				$data = mysqli_query($koneksi, "SELECT * FROM lowongan WHERE id_lowongan='$id_lowongan'");
+				$data = mysqli_query($koneksi, "SELECT * FROM lowongan INNER JOIN divisi ON lowongan.id_divisi=divisi.id_divisi WHERE id_lowongan='$id_lowongan'");
 				$cek = mysqli_num_rows($data);
 				if ($cek <= 0) {
 				?>
@@ -103,6 +104,21 @@ require_once('../template/header.php');
 								<div class="form-group col-md-12">
 									<label class="font-weight-bold" for="kuota">Kuota</label>
 									<input autocomplete="off" type="text" name="kuota" required value="<?php echo $d['kuota']; ?>" class="form-control" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label class="font-weight-bold">Divisi</label>
+									<select name="id_divisi" id="" class="form-control">
+										<option value="<?= $d['id_divisi'] ?>"><?= $d['nama_divisi']; ?></option>
+										<?php foreach ($getDivisi as $key) : ?>
+											<?php if ($key['id_divisi'] != 10 && $key['id_divisi'] != $d['id_divisi']) : ?>
+												<option value="<?= $key['id_divisi']; ?>"><?= $key['nama_divisi']; ?></option>
+											<?php else : ?>
+												<option value="<?= $key['id_divisi']; ?>" hidden><?= $key['nama_divisi']; ?></option>
+											<?php endif; ?>
+										<?php endforeach; ?>
+									</select>
 								</div>
 							</div>
 						</div>

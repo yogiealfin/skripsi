@@ -1,13 +1,16 @@
 <?php require_once('../includes/init.php'); ?>
 <?php cek_login($role = array(1)); ?>
 
+
 <?php
+$getDivisi = mysqli_query($koneksi, "SELECT * FROM divisi");
 $errors = array();
 $sukses = false;
 
 $id_lowongan = (isset($_POST['id_lowongan']) ? trim($_POST['id_lowongan']) : '');
 $nama_lowongan = (isset($_POST['nama_lowongan']) ? trim($_POST['nama_lowongan']) : '');
 $kuota = (isset($_POST['kuota']) ? trim($_POST['kuota']) : '');
+$id_divisi = (isset($_POST['id_divisi']) ? trim($_POST['id_divisi']) : '');
 
 
 if (isset($_POST['submit'])) :
@@ -19,6 +22,9 @@ if (isset($_POST['submit'])) :
 	if (!$kuota) {
 		$errors[] = 'Kuota tidak boleh kosong';
 	}
+	if (!$id_divisi) {
+		$errors[] = 'Divisi tidak boleh kosong';
+	}
 	$result = mysqli_query($koneksi, "SELECT * FROM lowongan WHERE nama_lowongan = '$nama_lowongan'");
 	if (mysqli_fetch_assoc($result)) {
 		$errors[] = 'Lowongan Sudah ada!';
@@ -26,7 +32,7 @@ if (isset($_POST['submit'])) :
 
 	// Jika lolos validasi lakukan hal di bawah ini
 	if (empty($errors)) :
-		$simpan = mysqli_query($koneksi, "INSERT INTO lowongan (id_lowongan, nama_lowongan, kuota) VALUES (NULL, '$nama_lowongan', $kuota)");
+		$simpan = mysqli_query($koneksi, "INSERT INTO lowongan (id_lowongan, nama_lowongan, kuota, id_divisi) VALUES (NULL, '$nama_lowongan', '$kuota', '$id_divisi')");
 		if ($simpan) {
 			redirect_to('list-lowongan.php?status=sukses-baru');
 		} else {
@@ -73,6 +79,21 @@ require_once('../template/header.php');
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold">Kuota</label>
 					<input autocomplete="off" type="number" name="kuota" required class="form-control" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="font-weight-bold">Divisi</label>
+					<select name="id_divisi" id="" class="form-control">
+						<option value="">--Pilih Divisi--</option>
+						<?php foreach ($getDivisi as $key) : ?>
+							<?php if ($key['id_divisi'] != 10) : ?>
+								<option value="<?= $key['id_divisi']; ?>"><?= $key['nama_divisi']; ?></option>
+							<?php else : ?>
+								<option value="<?= $key['id_divisi']; ?>" hidden><?= $key['nama_divisi']; ?></option>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</select>
 				</div>
 			</div>
 		</div>
