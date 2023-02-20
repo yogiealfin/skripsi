@@ -22,9 +22,9 @@ if (isset($_REQUEST['pwdrst'])) {
         $mail->IsSMTP();
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = "tls";
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = 'smtp.niagahoster.com';
         $mail->Port = 587;
-        $mail->Username = "ygalf23@gmail.com";   //Enter your username/emailid
+        $mail->Username = "informasi@cipthaadhi.site";   //Enter your username/emailid
         $mail->Password = "23April.";   //Enter your password
         $mail->FromName = "PT. Cipta Adhi Potensia";
         $mail->AddAddress($email);
@@ -64,7 +64,7 @@ if (isset($_REQUEST['pwdrst'])) {
     <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon">
     <style>
-        .container {
+        .container-form {
             width: 500px;
         }
     </style>
@@ -77,7 +77,7 @@ if (isset($_REQUEST['pwdrst'])) {
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container container-form">
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->

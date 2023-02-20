@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) :
             $hashed_password = sha1($password);
             if (password_verify($password, $data['password'])) {
                 $_SESSION["user_id"] = $data["id_user"];
-                $_SESSION["username"] = $data["username"];
+                $_SESSION["username"] = $data["nama"];
                 $_SESSION["role"] = $data["role"];
                 $_SESSION["divisi"] = $data["id_divisi"];
                 redirect_to("dashboard.php");
