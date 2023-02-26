@@ -65,9 +65,9 @@ endif;
 							<?php
 							if ($data['status'] == 'Aktif') :
 							?>
-								<td class="text-success"><?= $data['status'] ?></td>
+								<td class="text-success font-weight-bold"><?= $data['status'] ?></td>
 							<?php else : ?>
-								<td class="text-danger"><?= $data['status'] ?></td>
+								<td class="text-danger font-weight-bold"><?= $data['status'] ?></td>
 							<?php endif; ?>
 							<td>
 								<div class="btn-group" role="group">

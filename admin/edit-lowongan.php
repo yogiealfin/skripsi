@@ -23,6 +23,14 @@ if (isset($_POST['submit'])) :
 
 	$buka = strtotime($tgl_buka);
 	$tutup = strtotime($tgl_tutup);
+	$today = date('Y-m-d');
+	$tdy = strtotime($today);
+
+	if ($tdy > $tutup || $tdy < $buka) {
+		$status = "Tutup";
+	} else {
+		$status = "Aktif";
+	}
 
 	// Validasi
 	if (!$nama_lowongan) {
@@ -35,7 +43,7 @@ if (isset($_POST['submit'])) :
 	// Jika lolos validasi lakukan hal di bawah ini
 	if (empty($errors)) :
 
-		$update = mysqli_query($koneksi, "UPDATE lowongan SET nama_lowongan = '$nama_lowongan', kuota = '$kuota', tgl_buka = '$tgl_buka', tgl_tutup = '$tgl_tutup' WHERE id_lowongan = '$id_lowongan'");
+		$update = mysqli_query($koneksi, "UPDATE lowongan SET nama_lowongan = '$nama_lowongan', kuota = '$kuota', tgl_buka = '$tgl_buka', tgl_tutup = '$tgl_tutup', status='$status' WHERE id_lowongan = '$id_lowongan'");
 		if ($update) {
 			// header("Location:list-pelamar.php?status=sukses-edit&id_lowongan=" . $id_lowongan);
 			redirect_to('list-lowongan.php?id_lowongan=' . $id_lowongan . '&status=sukses-edit');

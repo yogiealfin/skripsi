@@ -52,7 +52,11 @@ if ($user_role == 'admin' || $user_role == 'user') {
 								<td><?= $no; ?></td>
 								<td align="left"><?= $data['nama_pelamar'] ?></td>
 								<td><?= $data['nilai'] ?></td>
-								<td><?= $keputusan; ?></td>
+								<?php if ($keputusan == "Diterima") : ?>
+									<td class="text-success font-weight-bold"><?= $keputusan; ?></td>
+								<?php else : ?>
+									<td class="text-danger font-weight-bold"><?= $keputusan ?></td>
+								<?php endif; ?>
 								<?php if ($keputusan == 'Diterima') : ?>
 									<td>
 										<form action="tambah-pegawai.php" method="GET">
@@ -63,7 +67,7 @@ if ($user_role == 'admin' || $user_role == 'user') {
 											$cek_tombol = mysqli_num_rows($q);
 											?>
 											<?php if ($cek_tombol == 0) : ?>
-												<button type="submit" class="btn btn-warning btn-sm"><i class="fa fa-plus"></i> Tambah Pelamar</button>
+												<button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Pelamar</button>
 											<?php else : ?>
 												<div class="btn btn-success btn-sm"><i class="fa fa-check"></i> Data sudah ditambah</div>
 											<?php endif; ?>

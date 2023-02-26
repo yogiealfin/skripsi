@@ -17,6 +17,8 @@ $id_divisi = (isset($_POST['id_divisi']) ? trim($_POST['id_divisi']) : '');
 
 $buka = strtotime($tgl_buka);
 $tutup = strtotime($tgl_tutup);
+$today = date('Y-m-d');
+$tdy = strtotime($today);
 
 if (isset($_POST['submit'])) :
 
@@ -101,7 +103,11 @@ require_once('../template/header.php');
 					<input autocomplete="off" type="date" name="tgl_tutup" required class="form-control" id="tgl_tutup" />
 				</div>
 			</div>
-			<input type="text" name="status" value="Aktif" hidden>
+			<?php if ($tdy > $buka || $tdy == $buka) : ?>
+				<input type="text" name="status" value="Aktif" hidden>
+			<?php else : ?>
+				<input type="text" name="status" value="Tutup" hidden>
+			<?php endif; ?>
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold">Divisi</label>

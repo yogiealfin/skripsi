@@ -12,16 +12,14 @@ $dataDivisi = mysqli_fetch_assoc($listDivisi);
 
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-users"></i> Data Pegawai</h1>
-	<form action="tambah-pegawai.php" method="GET">
+	<!-- <form action="tambah-pegawai.php" method="GET">
 		<div class="form-row align-items-center">
 			<div class="col-auto my-1">
 				<input type="hidden" name="id_divisi" value="<?= $divisi; ?>">
 			</div>
 			<div class="col-auto my-1">
 				<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Pegawai</button>
-			</div>
-			<!-- <a href="perhitungan.php" class="btn btn-success"> <i class="fa fa-calculator"></i> Hitung </a> -->
-		</div>
+			</div> -->
 </div>
 
 <?php

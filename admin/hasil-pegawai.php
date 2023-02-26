@@ -65,7 +65,7 @@ if ($user_role == 'admin' || $user_role == 'kadiv') {
 								<td align="left"><?= $data['nama_pegawai'] ?></td>
 								<td><?= $data['nama_divisi'] ?></td>
 								<td><?= $data['nilai'] ?></td>
-								<td><?= $keputusan; ?></td>
+								<td class="font-weight-bold"><?= $keputusan; ?></td>
 							</tr>
 						<?php
 						endwhile;
