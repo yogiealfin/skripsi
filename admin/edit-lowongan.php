@@ -17,16 +17,25 @@ if (isset($_POST['submit'])) :
 
 	$nama_lowongan = $_POST['nama_lowongan'];
 	$kuota = $_POST['kuota'];
+	$tgl_buka = $_POST['tgl_buka'];
+	$tgl_tutup = $_POST['tgl_tutup'];
+	$id_divisi = $_POST['id_divisi'];
+
+	$buka = strtotime($tgl_buka);
+	$tutup = strtotime($tgl_tutup);
 
 	// Validasi
 	if (!$nama_lowongan) {
 		$errors[] = 'Nama Lowongan tidak boleh kosong';
 	}
+	if ($buka > $tutup) {
+		$errors[] = 'Tanggal tutup tidak boleh lebih awal dari tanggal buka lowongan!';
+	}
 
 	// Jika lolos validasi lakukan hal di bawah ini
 	if (empty($errors)) :
 
-		$update = mysqli_query($koneksi, "UPDATE lowongan SET nama_lowongan = '$nama_lowongan', kuota = '$kuota' WHERE id_lowongan = '$id_lowongan'");
+		$update = mysqli_query($koneksi, "UPDATE lowongan SET nama_lowongan = '$nama_lowongan', kuota = '$kuota', tgl_buka = '$tgl_buka', tgl_tutup = '$tgl_tutup' WHERE id_lowongan = '$id_lowongan'");
 		if ($update) {
 			// header("Location:list-pelamar.php?status=sukses-edit&id_lowongan=" . $id_lowongan);
 			redirect_to('list-lowongan.php?id_lowongan=' . $id_lowongan . '&status=sukses-edit');
@@ -119,6 +128,18 @@ require_once('../template/header.php');
 											<?php endif; ?>
 										<?php endforeach; ?>
 									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label class="font-weight-bold" for="tgl_buka">Tanggal Buka Lowongan</label>
+									<input autocomplete="off" type="date" name="tgl_buka" required class="form-control" id="tgl_buka" value="<?= $d['tgl_buka']; ?>" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label class="font-weight-bold" for="tgl_tutup">Tanggal Tutup Lowongan</label>
+									<input autocomplete="off" type="date" name="tgl_tutup" required class="form-control" id="tgl_tutup" value="<?= $d['tgl_tutup']; ?>" />
 								</div>
 							</div>
 						</div>

@@ -47,6 +47,7 @@ endif;
 						<th width="5%">No</th>
 						<th>Lowongan</th>
 						<th>Kuota</th>
+						<th>Status</th>
 						<th width="15%">Aksi</th>
 					</tr>
 				</thead>
@@ -61,6 +62,13 @@ endif;
 							<td><?php echo $no; ?></td>
 							<td align="left"><?php echo $data['nama_lowongan']; ?></td>
 							<td><?= $data['kuota']; ?></td>
+							<?php
+							if ($data['status'] == 'Aktif') :
+							?>
+								<td class="text-success"><?= $data['status'] ?></td>
+							<?php else : ?>
+								<td class="text-danger"><?= $data['status'] ?></td>
+							<?php endif; ?>
 							<td>
 								<div class="btn-group" role="group">
 									<a data-toggle="tooltip" data-placement="bottom" title="Edit Data" href="edit-lowongan.php?id=<?php echo $data['id_lowongan']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>

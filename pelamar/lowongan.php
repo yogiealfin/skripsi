@@ -10,9 +10,9 @@ foreach ($lowongan as $row) {
 	$exp = strtotime($row['tgl_tutup']);
 	$buka = strtotime($row['tgl_buka']);
 	if ($tdy > $exp || $tdy < $buka) {
-		mysqli_query($koneksi, "UPDATE lowongan SET status ='tutup' WHERE id_lowongan = '$row[id_lowongan]'");
+		mysqli_query($koneksi, "UPDATE lowongan SET status ='Tutup' WHERE id_lowongan = '$row[id_lowongan]'");
 	} else {
-		mysqli_query($koneksi, "UPDATE lowongan SET status ='aktif' WHERE id_lowongan = '$row[id_lowongan]'");
+		mysqli_query($koneksi, "UPDATE lowongan SET status ='Aktif' WHERE id_lowongan = '$row[id_lowongan]'");
 	}
 }
 ?>
@@ -83,7 +83,7 @@ foreach ($lowongan as $row) {
 						<tbody class="bg-white">
 							<?php
 							$no = 1;
-							$query = mysqli_query($koneksi, "SELECT * FROM lowongan  WHERE status = 'aktif'");
+							$query = mysqli_query($koneksi, "SELECT * FROM lowongan  WHERE status = 'Aktif'");
 							while ($data = mysqli_fetch_assoc($query)) {
 							?>
 								<tr align="center">

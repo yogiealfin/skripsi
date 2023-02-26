@@ -10,8 +10,13 @@ $sukses = false;
 $id_lowongan = (isset($_POST['id_lowongan']) ? trim($_POST['id_lowongan']) : '');
 $nama_lowongan = (isset($_POST['nama_lowongan']) ? trim($_POST['nama_lowongan']) : '');
 $kuota = (isset($_POST['kuota']) ? trim($_POST['kuota']) : '');
+$tgl_buka = (isset($_POST['tgl_buka']) ? trim($_POST['tgl_buka']) : '');
+$tgl_tutup = (isset($_POST['tgl_tutup']) ? trim($_POST['tgl_tutup']) : '');
+$status = (isset($_POST['status']) ? trim($_POST['status']) : '');
 $id_divisi = (isset($_POST['id_divisi']) ? trim($_POST['id_divisi']) : '');
 
+$buka = strtotime($tgl_buka);
+$tutup = strtotime($tgl_tutup);
 
 if (isset($_POST['submit'])) :
 
@@ -25,6 +30,9 @@ if (isset($_POST['submit'])) :
 	if (!$id_divisi) {
 		$errors[] = 'Divisi tidak boleh kosong';
 	}
+	if ($buka > $tutup) {
+		$errors[] = 'Tanggal tutup tidak boleh lebih awal dari tanggal buka lowongan!';
+	}
 	$result = mysqli_query($koneksi, "SELECT * FROM lowongan WHERE nama_lowongan = '$nama_lowongan'");
 	if (mysqli_fetch_assoc($result)) {
 		$errors[] = 'Lowongan Sudah ada!';
@@ -32,7 +40,7 @@ if (isset($_POST['submit'])) :
 
 	// Jika lolos validasi lakukan hal di bawah ini
 	if (empty($errors)) :
-		$simpan = mysqli_query($koneksi, "INSERT INTO lowongan (id_lowongan, nama_lowongan, kuota, id_divisi) VALUES (NULL, '$nama_lowongan', '$kuota', '$id_divisi')");
+		$simpan = mysqli_query($koneksi, "INSERT INTO lowongan (id_lowongan, nama_lowongan, kuota, tgl_buka, tgl_tutup, status, id_divisi) VALUES (NULL, '$nama_lowongan', '$kuota', '$tgl_buka', '$tgl_tutup', '$status', '$id_divisi')");
 		if ($simpan) {
 			redirect_to('list-lowongan.php?status=sukses-baru');
 		} else {
@@ -81,6 +89,19 @@ require_once('../template/header.php');
 					<input autocomplete="off" type="number" name="kuota" required class="form-control" />
 				</div>
 			</div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="font-weight-bold" for="tgl_buka">Tanggal Buka Lowongan</label>
+					<input autocomplete="off" type="date" name="tgl_buka" required class="form-control" id="tgl_buka" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label class="font-weight-bold" for="tgl_tutup">Tanggal Tutup Lowongan</label>
+					<input autocomplete="off" type="date" name="tgl_tutup" required class="form-control" id="tgl_tutup" />
+				</div>
+			</div>
+			<input type="text" name="status" value="Aktif" hidden>
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold">Divisi</label>
