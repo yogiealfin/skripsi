@@ -3,6 +3,7 @@
 
 
 <?php
+$id = (isset($_GET['id'])) ? trim($_GET['id']) : '';
 $getDivisi = mysqli_query($koneksi, "SELECT * FROM divisi");
 $errors = array();
 $sukses = false;
@@ -15,10 +16,26 @@ $tgl_tutup = (isset($_POST['tgl_tutup']) ? trim($_POST['tgl_tutup']) : '');
 $status = (isset($_POST['status']) ? trim($_POST['status']) : '');
 $id_divisi = (isset($_POST['id_divisi']) ? trim($_POST['id_divisi']) : '');
 
+setlocale(LC_TIME, 'Indonesian');
 $buka = strtotime($tgl_buka);
 $tutup = strtotime($tgl_tutup);
 $today = date('Y-m-d');
 $tdy = strtotime($today);
+
+$query_div = mysqli_query($koneksi, "SELECT * FROM divisi");
+$data_div = mysqli_fetch_assoc($query_div);
+$jumlah = mysqli_query($koneksi, "SELECT * FROM pegawai WHERE id_divisi = '$id'");
+$total = mysqli_num_rows($jumlah);
+$kapasitas = $data_div['kapasitas'];
+$max = $kapasitas - $total;
+
+
+$q1 = mysqli_query($koneksi, "SELECT * FROM divisi where id_divisi = '$id'");
+$q2 = mysqli_fetch_assoc($q1);
+$n_div = $q2['nama_divisi'];
+$month = strftime('%B', strtotime($tgl_buka));
+$year = strftime('%Y', strtotime($tgl_buka));
+$nama_lowongan = 'Staff' . ' ' . $n_div . ' ' . $month . ' ' . $year;
 
 if (isset($_POST['submit'])) :
 
@@ -35,9 +52,12 @@ if (isset($_POST['submit'])) :
 	if ($buka > $tutup) {
 		$errors[] = 'Tanggal tutup tidak boleh lebih awal dari tanggal buka lowongan!';
 	}
+	if ($kuota > $max) {
+		$errors[] = 'Jumlah kuota yang dibuka melebihi kapasitas perusahaan';
+	}
 	$result = mysqli_query($koneksi, "SELECT * FROM lowongan WHERE nama_lowongan = '$nama_lowongan'");
 	if (mysqli_fetch_assoc($result)) {
-		$errors[] = 'Lowongan Sudah ada!';
+		$errors[] = 'Lowongan Sudah Ada!';
 	}
 
 	// Jika lolos validasi lakukan hal di bawah ini
@@ -79,12 +99,7 @@ require_once('../template/header.php');
 			<h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-fw fa-plus"></i> Tambah Data Lowongan</h6>
 		</div>
 		<div class="card-body">
-			<div class="row">
-				<div class="form-group col-md-12">
-					<label class="font-weight-bold">Nama Lowongan</label>
-					<input autocomplete="off" type="text" name="nama_lowongan" required class="form-control" />
-				</div>
-			</div>
+			<input type="text" name="nama_lowongan" value="" hidden>
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label class="font-weight-bold">Kuota</label>
@@ -108,21 +123,7 @@ require_once('../template/header.php');
 			<?php else : ?>
 				<input type="text" name="status" value="Tutup" hidden>
 			<?php endif; ?>
-			<div class="row">
-				<div class="form-group col-md-12">
-					<label class="font-weight-bold">Divisi</label>
-					<select name="id_divisi" id="" class="form-control">
-						<option value="">--Pilih Divisi--</option>
-						<?php foreach ($getDivisi as $key) : ?>
-							<?php if ($key['id_divisi'] != 10) : ?>
-								<option value="<?= $key['id_divisi']; ?>"><?= $key['nama_divisi']; ?></option>
-							<?php else : ?>
-								<option value="<?= $key['id_divisi']; ?>" hidden><?= $key['nama_divisi']; ?></option>
-							<?php endif; ?>
-						<?php endforeach; ?>
-					</select>
-				</div>
-			</div>
+			<input type="text" name="id_divisi" value="<?= $id ?>" hidden>
 		</div>
 		<div class="card-footer text-right">
 			<button name="submit" value="submit" type="submit" class="btn btn-success"><i class="fa fa-save"></i> Simpan</button>

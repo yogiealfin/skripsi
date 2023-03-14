@@ -26,6 +26,13 @@ if (isset($_POST['submit'])) :
 	$today = date('Y-m-d');
 	$tdy = strtotime($today);
 
+	$query_div = mysqli_query($koneksi, "SELECT * FROM divisi");
+	$data_div = mysqli_fetch_assoc($query_div);
+	$jumlah = mysqli_query($koneksi, "SELECT * FROM pegawai WHERE id_divisi = '$id_divisi'");
+	$total = mysqli_num_rows($jumlah);
+	$kapasitas = $data_div['kapasitas'];
+	$max = $kapasitas - $total;
+
 	if ($tdy > $tutup || $tdy < $buka) {
 		$status = "Tutup";
 	} else {
@@ -39,11 +46,13 @@ if (isset($_POST['submit'])) :
 	if ($buka > $tutup) {
 		$errors[] = 'Tanggal tutup tidak boleh lebih awal dari tanggal buka lowongan!';
 	}
-
+	if ($kuota > $max) {
+		$errors[] = 'Jumlah kuota melebihi kapasitas perusahaan';
+	}
 	// Jika lolos validasi lakukan hal di bawah ini
 	if (empty($errors)) :
 
-		$update = mysqli_query($koneksi, "UPDATE lowongan SET nama_lowongan = '$nama_lowongan', kuota = '$kuota', tgl_buka = '$tgl_buka', tgl_tutup = '$tgl_tutup', status='$status' WHERE id_lowongan = '$id_lowongan'");
+		$update = mysqli_query($koneksi, "UPDATE lowongan SET nama_lowongan = '$nama_lowongan', kuota = '$kuota', tgl_buka = '$tgl_buka', tgl_tutup = '$tgl_tutup', status='$status', id_divisi='$id_divisi' WHERE id_lowongan = '$id_lowongan'");
 		if ($update) {
 			// header("Location:list-pelamar.php?status=sukses-edit&id_lowongan=" . $id_lowongan);
 			redirect_to('list-lowongan.php?id_lowongan=' . $id_lowongan . '&status=sukses-edit');
@@ -69,7 +78,7 @@ require_once('../template/header.php');
 </div>
 
 <?php if (!empty($errors)) : ?>
-	<div class="alert alert-info">
+	<div class="alert alert-danger">
 		<?php foreach ($errors as $error) : ?>
 			<?php echo $error; ?>
 		<?php endforeach; ?>
@@ -81,7 +90,7 @@ require_once('../template/header.php');
 		Data berhasil disimpan
 	</div>
 <?php elseif ($ada_error) : ?>
-	<div class="alert alert-info">
+	<div class="alert alert-danger">
 		<?php echo $ada_error; ?>
 	</div>
 <?php else : ?>

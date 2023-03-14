@@ -35,7 +35,7 @@ endif;
 <div class="card shadow mb-4">
 	<!-- /.card-header -->
 	<div class="card-header py-3">
-		<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-table"></i> Daftar Pelgawai </h6>
+		<h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-table"></i> Daftar Pegawai </h6>
 	</div>
 
 

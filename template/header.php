@@ -68,14 +68,14 @@
                             } ?>">
           <a class="nav-link" href="list-lowongan.php">
             <i class="fas fa-fw fa-file"></i>
-            <span>Data Lowongan</span></a>
+            <span>Lowongan</span></a>
         </li>
         <li class="nav-item <?php if ($page == "Pelamar") {
                               echo "active";
                             } ?>">
           <a class="nav-link" href="daftar-pelamar.php">
             <i class="fas fa-fw fa-users"></i>
-            <span>Data Pelamar</span></a>
+            <span>Pelamar</span></a>
         </li>
 
         <li class="nav-item <?php if ($page == "Kriteria") {
@@ -83,7 +83,7 @@
                             } ?>">
           <a class="nav-link" href="list-kriteria.php">
             <i class="fas fa-fw fa-cube"></i>
-            <span>Data Kriteria</span></a>
+            <span>Kriteria</span></a>
         </li>
 
         <li class="nav-item <?php if ($page == "Sub Kriteria") {
@@ -91,7 +91,7 @@
                             } ?>">
           <a class="nav-link" href="list-sub-kriteria.php">
             <i class="fas fa-fw fa-cubes"></i>
-            <span>Data Sub Kriteria</span></a>
+            <span>Sub Kriteria</span></a>
         </li>
 
         <li class="nav-item <?php if ($page == "Penilaian_pelamar") {
@@ -126,33 +126,40 @@
         <div class="sidebar-heading">
           Data Pegawai
         </div>
+        <li class="nav-item <?php if ($page == "Divisi") {
+                              echo "active";
+                            } ?>">
+          <a class="nav-link" href="divisi.php">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Divisi</span></a>
+        </li>
         <li class="nav-item <?php if ($page == "Periode_Penilaian") {
                               echo "active";
                             } ?>">
           <a class="nav-link" href="list-periode-penilaian.php">
             <i class="fas fa-fw fa-calendar"></i>
-            <span>Data Periode Penilaian</span></a>
+            <span>Periode Penilaian</span></a>
         </li>
         <li class="nav-item <?php if ($page == "Indikator") {
                               echo "active";
                             } ?>">
           <a class="nav-link" href="list-indikator.php">
             <i class="fas fa-fw fa-cube"></i>
-            <span>Data Indikator Penilaian</span></a>
+            <span>Indikator Penilaian</span></a>
         </li>
         <li class="nav-item <?php if ($page == "Pegawai") {
                               echo "active";
                             } ?>">
           <a class="nav-link" href="daftar-pegawai.php">
             <i class="fas fa-fw fa-users"></i>
-            <span>Data Pegawai</span></a>
+            <span>Pegawai</span></a>
         </li>
         <li class="nav-item <?php if ($page == "Hasil_Pegawai") {
                               echo "active";
                             } ?>">
           <a class="nav-link" href="daftar-hasil-pegawai.php">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Data Hasil Akhir Pegawai</span></a>
+            <span>Hasil Akhir Pegawai</span></a>
         </li>
         <li class="nav-item <?php if ($page == "User") {
                               echo "active";
