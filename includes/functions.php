@@ -42,13 +42,21 @@ function tambahPelamar($data)
 	$pendidikan = (isset($_POST['pendidikan'])) ? trim($_POST['pendidikan']) : '';
 	$id_lowongan = (isset($_POST['id_lowongan']) ? trim($_POST['id_lowongan']) : '');
 	$dokumen = upload();
-	if (!$dokumen) {
-		return false;
-	}
 
-	$simpan = mysqli_query($koneksi, "INSERT INTO pelamar (id_pelamar, nama_pelamar, no_ktp, no_telp, email, tgl_lahir, pendidikan, dokumen, id_lowongan) VALUES (NULL, '$nama', '$no_ktp', '$no_telp', '$email', '$tgl_lahir', '$pendidikan', '$dokumen', $id_lowongan)");
-	if ($simpan) {
-		Header('Location:lowongan.php?status=sukses-baru');
+	$today = date('Y-m-d');
+	$umur = date_diff(date_create($tgl_lahir), date_create($today));
+	$s = $umur->format('%y');
+	if (!$dokumen) {
+		Header('Location:pendaftaran.php?id_lowongan=' . $id_lowongan . '&status=3');
+	} elseif (strtotime($today) < strtotime($tgl_lahir)) {
+		Header('Location:pendaftaran.php?id_lowongan=' . $id_lowongan . '&status=4');
+	} elseif ($s > 30) {
+		Header('Location:pendaftaran.php?id_lowongan=' . $id_lowongan . '&status=5');
+	} else {
+		$simpan = mysqli_query($koneksi, "INSERT INTO pelamar (id_pelamar, nama_pelamar, no_ktp, no_telp, email, tgl_lahir, pendidikan, dokumen, id_lowongan) VALUES (NULL, '$nama', '$no_ktp', '$no_telp', '$email', '$tgl_lahir', '$pendidikan', '$dokumen', $id_lowongan)");
+		if ($simpan) {
+			Header('Location:lowongan.php?status=sukses-baru');
+		}
 	}
 }
 

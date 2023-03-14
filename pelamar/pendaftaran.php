@@ -93,6 +93,15 @@ if (isset($_POST["submit"])) {
             case '2':
                 $msg = 'Data gagal dikirim, ukuran file maks 2MB';
                 break;
+            case '3':
+                $msg = 'Dokumen harus diupload!';
+                break;
+            case '4':
+                $msg = 'Tanggal lahir invalid, mohon masukkan tanggal lahir yang benar!';
+                break;
+            case '5':
+                $msg = 'Mohon maaf umur anda melebihi persyaratan!';
+                break;
         endswitch;
 
         if ($msg) :

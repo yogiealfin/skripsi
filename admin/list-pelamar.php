@@ -79,7 +79,7 @@ endif;
 							$today = date('Y-m-d');
 							$umur = date_diff(date_create($data['tgl_lahir']), date_create($today));
 							?>
-							<td><?= $umur->format('%y') ?></td>
+							<td><?= $umur->format('%y') ?> Tahun</td>
 							<td><?= $data['pendidikan']; ?></td>
 							<td><a href="../pelamar/dokumen/<?= $data['dokumen']; ?>"><button class="btn btn-success btn-sm"><i class="fa fa-solid fa-file"></i> Dokumen</button></a></td>
 							<td>
